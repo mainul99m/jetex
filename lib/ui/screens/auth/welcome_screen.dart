@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:jetex_app/ui/screens/auth/register_email_screen.dart';
+import 'package:jetex_app/ui/screens/auth/register_screen.dart';
 import 'package:jetex_app/utils/color_pallete.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
+import 'login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -66,7 +69,9 @@ class WelcomeScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: padding),
             child: AuthButton(
               color: ColorPallete.sun,
-              onPressed: (){},
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
+              },
               child: Text(
                 'Sign In',
                 style: TextStyle(
@@ -82,7 +87,9 @@ class WelcomeScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: padding),
             child: AuthButton(
               color: Colors.white,
-              onPressed: (){},
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> RegisterEmailScreen()));
+              },
               child: Text(
                   'Register',
                 style: TextStyle(

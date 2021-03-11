@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jetex_app/utils/color_pallete.dart';
+import 'package:jetex_app/ui/widgets/widgets.dart';
+
 
 class LoginScreen extends StatelessWidget {
 
@@ -27,21 +29,38 @@ class LoginScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 20,),
-          SizedBox(
-            width: 100,
-            child: FlatButton(
-              onPressed: (){},
-              child: Row(
-                children: [
-                  Text(
-                    'Back',
-                    style: TextStyle(
-                        color: Colors.white
+          SizedBox(height: 40,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: padding-20),
+            child: SizedBox(
+              width: 100,
+              child: FlatButton(
+                splashColor: Colors.transparent,
+                // highlightColor: Colors.transparent,
+                onPressed: (){
+                  print('working');
+                  Navigator.of(context).pop();
+                },
+                child: Row(
+                  children: [
+                    RotatedBox(
+                      quarterTurns: 1,
+                      child: Icon(
+                          Icons.arrow_drop_down_circle,
+                        color: ColorPallete.sun,
+                        size: 18,
+                      ),
                     ),
-                  ),
-                ],
-              )
+                    SizedBox(width: 4,),
+                    Text(
+                      'Back',
+                      style: TextStyle(
+                          color: Colors.white
+                      ),
+                    ),
+                  ],
+                )
+              ),
             ),
           ),
           SizedBox(height: 26,),
@@ -67,23 +86,53 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 40,),
+          SizedBox(height: 60,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: padding),
-            child: TextField(
-              decoration: InputDecoration(
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+            child: CustomTextField(
+              title: 'Your Email',
+            ),
+          ),
+          SizedBox(height: 20,),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: padding),
+            child: CustomTextField(
+              title: 'Your Password',
+            ),
+          ),
+
+          SizedBox(height: 60,),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: padding),
+            child: AuthButton(
+              onPressed: (){},
+              color: ColorPallete.sun,
+              child: Text(
+                'Sign In',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16
                 ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                ),
-                border: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+              ),
+            ),
+          ),
+          SizedBox(height: 14,),
+          Center(
+            child: MaterialButton(
+              onPressed: (){},
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              child: Text(
+                'Forgot Password?',
+                style: TextStyle(
+                  color: Colors.white,
+                  decoration: TextDecoration.underline
                 ),
               ),
             ),
           )
+
         ],
       ),
     );

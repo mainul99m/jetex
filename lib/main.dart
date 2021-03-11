@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:jetex_app/ui/screens/auth/welcome_screen.dart';
 import 'package:jetex_app/ui/screens/auth/login_screen.dart';
 
+import 'ui/screens/auth/welcome_screen.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -12,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: LoginScreen(),
+      home: WelcomeScreen(),
     );
   }
 }
