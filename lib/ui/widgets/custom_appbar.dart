@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+//import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 
@@ -35,9 +35,12 @@ class CustomAppbar extends StatelessWidget {
           ),
           CircleAvatar(
             radius: _size.height * 0.03,
-            backgroundImage: CachedNetworkImageProvider(
+            backgroundImage: NetworkImage('https://i.pravatar.cc/150?img=60'),
+            /*
+            CachedNetworkImageProvider(
               'https://i.pravatar.cc/150?img=60',
             ),
+            */
           )
         ],
       ),
