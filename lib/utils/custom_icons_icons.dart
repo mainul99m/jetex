@@ -20,6 +20,10 @@
 ///         Author:    Dave Gandy
 ///         License:   SIL ()
 ///         Homepage:  http://fortawesome.github.com/Font-Awesome/
+/// * Zocial, Copyright (C) 2012 by Sam Collins
+///         Author:    Sam Collins
+///         License:   MIT (http://opensource.org/licenses/mit-license.php)
+///         Homepage:  http://zocial.smcllns.com/
 /// * Font Awesome 5, Copyright (C) 2016 by Dave Gandy
 ///         Author:    Dave Gandy
 ///         License:   SIL (https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt)
@@ -39,6 +43,7 @@ class CustomIcons {
   static const IconData add = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData location = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData edit = IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData email = IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData home = IconData(0xf015, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData link = IconData(0xf0c1, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData location_arrow = IconData(0xf124, fontFamily: _kFontFam, fontPackage: _kFontPkg);

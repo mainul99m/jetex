@@ -16,7 +16,7 @@ class LoginScreen extends StatelessWidget {
 
   Widget _loginScreen(BuildContext context){
     Size _size = MediaQuery.of(context).size;
-    const double padding = 32.0;
+    const double padding = 40.0;
 
     return Container(
       width: _size.width,

@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:jetex_app/ui/screens/auth/register_screen.dart';
 import 'package:jetex_app/utils/color_pallete.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
+import 'package:jetex_app/utils/custom_icons_icons.dart';
+import 'package:jetex_app/utils/string_extension.dart';
 
 
 class RegisterEmailScreen extends StatelessWidget {
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       body: _registerEmail(context),
     );
   }
@@ -16,7 +21,8 @@ class RegisterEmailScreen extends StatelessWidget {
 
   Widget _registerEmail(BuildContext context){
     Size _size = MediaQuery.of(context).size;
-    const double padding = 32.0;
+    const double padding = 40.0;
+    TextEditingController emailController = TextEditingController();
 
     return Container(
       width: _size.width,
@@ -30,7 +36,7 @@ class RegisterEmailScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 40,),
+          SizedBox(height: _size.height * 0.06,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: padding-20),
             child: SizedBox(
@@ -39,24 +45,27 @@ class RegisterEmailScreen extends StatelessWidget {
                   splashColor: Colors.transparent,
                   // highlightColor: Colors.transparent,
                   onPressed: (){
-                    print('working');
                     Navigator.of(context).pop();
                   },
                   child: Row(
                     children: [
                       RotatedBox(
                         quarterTurns: 1,
-                        child: Icon(
-                          Icons.arrow_drop_down_circle,
-                          color: ColorPallete.sun,
-                          size: 18,
+                        child: RotatedBox(
+                          quarterTurns: 1,
+                          child: Icon(
+                            CustomIcons.circular_arrow_right,
+                            color: ColorPallete.sun,
+                            size: 18,
+                          ),
                         ),
                       ),
-                      SizedBox(width: 4,),
+                      SizedBox(width: 5,),
                       Text(
                         'Back',
                         style: TextStyle(
-                            color: Colors.white
+                            color: Colors.white,
+                            fontFamily: 'HelveticaNeue'
                         ),
                       ),
                     ],
@@ -64,34 +73,45 @@ class RegisterEmailScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 26,),
+          SizedBox(height: _size.height * 0.018,),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: padding),
             child: Text(
-              'What\'s your\nemail\naddress',
+              'What\'s your\nemail\naddress?',
               style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 34
+                letterSpacing: 0.0,
+                color: Colors.white,
+                fontFamily: 'HelveticaNeue',
+                fontWeight: FontWeight.w700,
+                fontSize: _size.height * 0.043,
               ),
             ),
           ),
-          SizedBox(height: 60,),
+          SizedBox(height: _size.height * 0.062,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: padding),
             child: CustomTextField(
               title: 'Your Email',
+              keyboardType: TextInputType.emailAddress,
+              controller: emailController,
             ),
           ),
 
-          SizedBox(height: 30,),
+          SizedBox(height: _size.height * 0.03,),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: padding),
             child: AuthButton(
               onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> RegisterScreen()));
+                if(emailController.text.isValidEmail()){
+                  FocusScope.of(context).unfocus();
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> RegisterScreen()));
+                } else{
+                  final snackBar = SnackBar(content: Text('Invalid email'));
+                  _scaffoldKey.currentState.showSnackBar(snackBar);
+                }
               },
               color: ColorPallete.sun,
+              height: _size.height * 0.055,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -105,8 +125,9 @@ class RegisterEmailScreen extends StatelessWidget {
                     'Continue with Email',
                     style: TextStyle(
                         color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16
+                        fontFamily: 'HelveticaNeue',
+                        fontWeight: FontWeight.w700,
+                        fontSize: _size.height * 0.02
                     ),
                   ),
                 ],
