@@ -9,7 +9,7 @@ import 'package:jetex_app/utils/string_extension.dart';
 class RegisterEmailScreen extends StatelessWidget {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-
+  TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +22,7 @@ class RegisterEmailScreen extends StatelessWidget {
   Widget _registerEmail(BuildContext context){
     Size _size = MediaQuery.of(context).size;
     const double padding = 40.0;
-    TextEditingController emailController = TextEditingController();
+
 
     return Container(
       width: _size.width,
@@ -102,15 +102,7 @@ class RegisterEmailScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: padding),
             child: AuthButton(
               onPressed: (){
-                if(emailController.text.isValidEmail()){
-                  FocusScope.of(context).unfocus();
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> RegisterScreen(
-                    email: emailController.text,
-                  )));
-                } else{
-                  final snackBar = SnackBar(content: Text('Invalid email'));
-                  _scaffoldKey.currentState.showSnackBar(snackBar);
-                }
+                _onGo(context);
               },
               color: ColorPallete.sun,
               height: _size.height * 0.055,
@@ -140,5 +132,16 @@ class RegisterEmailScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _onGo(BuildContext context){
+    if(emailController.text.isValidEmail()){
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> RegisterScreen(
+        email: emailController.text,
+      )));
+    } else{
+      final snackBar = SnackBar(content: Text('Invalid email'));
+      _scaffoldKey.currentState.showSnackBar(snackBar);
+    }
   }
 }
