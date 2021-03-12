@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jetex_app/utils/color_pallete.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
+import 'package:jetex_app/utils/custom_icons_icons.dart';
 
 
 class LoginScreen extends StatelessWidget {
@@ -29,7 +30,7 @@ class LoginScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: _size.height * 0.05,),
+          SizedBox(height: _size.height * 0.06,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: padding-20),
             child: SizedBox(
@@ -38,24 +39,27 @@ class LoginScreen extends StatelessWidget {
                 splashColor: Colors.transparent,
                 // highlightColor: Colors.transparent,
                 onPressed: (){
-                  print('working');
                   Navigator.of(context).pop();
                 },
                 child: Row(
                   children: [
                     RotatedBox(
                       quarterTurns: 1,
-                      child: Icon(
-                          Icons.arrow_drop_down_circle,
-                        color: ColorPallete.sun,
-                        size: 18,
+                      child: RotatedBox(
+                        quarterTurns: 1,
+                        child: Icon(
+                            CustomIcons.circular_arrow_right,
+                          color: ColorPallete.sun,
+                          size: 18,
+                        ),
                       ),
                     ),
-                    SizedBox(width: 4,),
+                    SizedBox(width: 5,),
                     Text(
                       'Back',
                       style: TextStyle(
-                          color: Colors.white
+                          color: Colors.white,
+                        fontFamily: 'HelveticaNeue'
                       ),
                     ),
                   ],
@@ -63,70 +67,78 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 26,),
+          SizedBox(height: _size.height * 0.018,),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: padding),
             child: Text(
               'Sign In',
               style: TextStyle(
                 color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 30
+                fontFamily: 'HelveticaNeue',
+                fontWeight: FontWeight.w700,
+                fontSize: _size.height * 0.044
               ),
             ),
           ),
-          SizedBox(height: 16,),
+          SizedBox(height: _size.height * 0.02,),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: padding),
             child: Text(
               'Hesabınıza email və ya müştəri nömrəsi ilə \ndaxil ola bilərsiz.',
               style: TextStyle(
                 color: Colors.white,
-                fontWeight: FontWeight.bold
+                fontFamily: 'HelveticaNeue',
+                fontWeight: FontWeight.w500
               ),
             ),
           ),
-          SizedBox(height: 60,),
+          SizedBox(height: _size.height * 0.064,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: padding),
             child: CustomTextField(
               title: 'Your Email',
+              keyboardType: TextInputType.emailAddress,
             ),
           ),
-          SizedBox(height: 20,),
+          SizedBox(height: _size.height * 0.034,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: padding),
             child: CustomTextField(
               title: 'Your Password',
+              obscureText: true,
             ),
           ),
-
-          SizedBox(height: 60,),
+          SizedBox(height: _size.height * 0.04,),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: padding),
             child: AuthButton(
               onPressed: (){},
               color: ColorPallete.sun,
+              height: _size.height * 0.055,
               child: Text(
                 'Sign In',
                 style: TextStyle(
                   color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16
+                  fontFamily: 'HelveticaNeue',
+                  fontWeight: FontWeight.w700,
+                  fontSize: _size.height * 0.02
                 ),
               ),
             ),
           ),
-          SizedBox(height: 14,),
           Center(
             child: MaterialButton(
               onPressed: (){},
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
+              //splashColor: Colors.transparent,
+              //highlightColor: Colors.transparent,
+              height: _size.height * 0.01,
               child: Text(
                 'Forgot Password?',
                 style: TextStyle(
                   color: Colors.white,
+                  fontFamily: 'HelveticaNeue',
+                  letterSpacing: 0.01,
+                  fontSize: _size.height * 0.014,
                   decoration: TextDecoration.underline
                 ),
               ),

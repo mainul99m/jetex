@@ -12,6 +12,14 @@
 ///       - asset: fonts/CustomIcons.ttf
 ///
 /// 
+/// * Material Design Icons, Copyright (C) Google, Inc
+///         Author:    Google
+///         License:   Apache 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
+///         Homepage:  https://design.google.com/icons/
+/// * Font Awesome 4, Copyright (C) 2016 by Dave Gandy
+///         Author:    Dave Gandy
+///         License:   SIL ()
+///         Homepage:  http://fortawesome.github.com/Font-Awesome/
 /// * Font Awesome 5, Copyright (C) 2016 by Dave Gandy
 ///         Author:    Dave Gandy
 ///         License:   SIL (https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt)
@@ -25,5 +33,16 @@ class CustomIcons {
   static const _kFontFam = 'CustomIcons';
   static const String _kFontPkg = null;
 
+  static const IconData circular_arrow_left = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData circular_arrow_right = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData motorcycle = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData add = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData location = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData edit = IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData home = IconData(0xf015, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData link = IconData(0xf0c1, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData location_arrow = IconData(0xf124, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData credit_card_alt = IconData(0xf283, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData exchange_alt = IconData(0xf362, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData caravan = IconData(0xf8ff, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
