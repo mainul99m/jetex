@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jetex_app/ui/screens/auth/register_email_screen.dart';
 import 'package:jetex_app/ui/screens/auth/register_screen.dart';
-import 'package:jetex_app/utils/color_pallete.dart';
+import 'package:jetex_app/utils/color_palette.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'login_screen.dart';
 
@@ -24,7 +24,7 @@ class WelcomeScreen extends StatelessWidget {
         gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [ColorPallete.LightPurple, ColorPallete.DarkPurple]
+            colors: [ColorPalette.lightPurple, ColorPalette.darkPurple]
         ),
       ),
       child: Column(
@@ -71,7 +71,7 @@ class WelcomeScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: padding),
             child: AuthButton(
-              color: ColorPallete.sun,
+              color: ColorPalette.sun,
               height: _size.height * 0.055,
               onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
@@ -100,7 +100,7 @@ class WelcomeScreen extends StatelessWidget {
               child: Text(
                   'Register',
                 style: TextStyle(
-                  color: ColorPallete.DarkPurple,
+                  color: ColorPalette.darkPurple,
                   fontFamily: 'HelveticaNeue',
                   fontSize: _size.height * 0.019,
                   letterSpacing: -.5,

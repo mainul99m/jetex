@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jetex_app/utils/color_pallete.dart';
+import 'package:jetex_app/utils/color_palette.dart';
 
 
 class CustomTextField extends StatelessWidget {
@@ -29,7 +29,7 @@ class CustomTextField extends StatelessWidget {
           title.toUpperCase(),
           style: TextStyle(
             letterSpacing: 0.0,
-              color: ColorPallete.transparentWhite,
+              color: ColorPalette.transparentWhite,
               fontFamily: 'HelveticaNeue',
               fontWeight: FontWeight.w900,
               fontSize: _height * 0.0115,
@@ -50,13 +50,13 @@ class CustomTextField extends StatelessWidget {
             contentPadding: EdgeInsets.fromLTRB(12, _height * .018, 12, _height * .014),
             isDense: true,
             enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: ColorPallete.transparentWhite),
+              borderSide: BorderSide(color: ColorPalette.transparentWhite),
             ),
             focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: ColorPallete.transparentWhite),
+              borderSide: BorderSide(color: ColorPalette.transparentWhite),
             ),
             border: UnderlineInputBorder(
-              borderSide: BorderSide(color: ColorPallete.transparentWhite),
+              borderSide: BorderSide(color: ColorPalette.transparentWhite),
             ),
           ),
         ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jetex_app/utils/color_pallete.dart';
+import 'package:jetex_app/utils/color_palette.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/custom_icons_icons.dart';
 
@@ -32,7 +32,7 @@ class RegisterScreen extends StatelessWidget {
         gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [ColorPallete.LightPurple, ColorPallete.DarkPurple]
+            colors: [ColorPalette.lightPurple, ColorPalette.darkPurple]
         ),
       ),
       child: Column(
@@ -57,7 +57,7 @@ class RegisterScreen extends StatelessWidget {
                           quarterTurns: 1,
                           child: Icon(
                             CustomIcons.circular_arrow_right,
-                            color: ColorPallete.sun,
+                            color: ColorPalette.sun,
                             size: 18,
                           ),
                         ),
@@ -96,7 +96,7 @@ class RegisterScreen extends StatelessWidget {
                 Text(
                   'Using ',
                   style: TextStyle(
-                    color: ColorPallete.transparentWhite,
+                    color: ColorPalette.transparentWhite,
                     fontSize: _size.height * 0.018,
                     fontFamily: 'HelveticaNeue',
                     fontWeight: FontWeight.w500
@@ -114,7 +114,7 @@ class RegisterScreen extends StatelessWidget {
                 Text(
                   ' to sign up',
                   style: TextStyle(
-                      color: ColorPallete.transparentWhite,
+                      color: ColorPalette.transparentWhite,
                       fontSize: _size.height * 0.018,
                       fontFamily: 'HelveticaNeue',
                       fontWeight: FontWeight.w500
@@ -152,7 +152,7 @@ class RegisterScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: padding),
             child: AuthButton(
               onPressed: (){},
-              color: ColorPallete.sun,
+              color: ColorPalette.sun,
               child: Text(
                 'Log In',
                 style: TextStyle(

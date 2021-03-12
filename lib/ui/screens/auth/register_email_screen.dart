@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jetex_app/ui/screens/auth/register_screen.dart';
-import 'package:jetex_app/utils/color_pallete.dart';
+import 'package:jetex_app/utils/color_palette.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/custom_icons_icons.dart';
 import 'package:jetex_app/utils/string_extension.dart';
@@ -9,7 +9,7 @@ import 'package:jetex_app/utils/string_extension.dart';
 class RegisterEmailScreen extends StatelessWidget {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  TextEditingController emailController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +30,7 @@ class RegisterEmailScreen extends StatelessWidget {
         gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [ColorPallete.LightPurple, ColorPallete.DarkPurple]
+            colors: [ColorPalette.lightPurple, ColorPalette.darkPurple]
         ),
       ),
       child: Column(
@@ -55,7 +55,7 @@ class RegisterEmailScreen extends StatelessWidget {
                           quarterTurns: 1,
                           child: Icon(
                             CustomIcons.circular_arrow_right,
-                            color: ColorPallete.sun,
+                            color: ColorPalette.sun,
                             size: 18,
                           ),
                         ),
@@ -104,7 +104,7 @@ class RegisterEmailScreen extends StatelessWidget {
               onPressed: (){
                 _onGo(context);
               },
-              color: ColorPallete.sun,
+              color: ColorPalette.sun,
               height: _size.height * 0.055,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
