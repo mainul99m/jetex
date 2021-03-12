@@ -1,8 +1,16 @@
 //import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:jetex_app/utils/color_palette.dart';
 
 class CustomAppbar extends StatelessWidget {
+
+  final Widget leading;
+
+  const CustomAppbar({
+    Key key,
+    this.leading
+  }) : super(key: key);
+
+
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
@@ -12,27 +20,7 @@ class CustomAppbar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              Image(
-                height: _size.height * 0.027,
-                image: AssetImage(
-                    'assets/ui/icons/flag.png'
-                ),
-              ),
-              SizedBox(width: 8,),
-              Text(
-                'Address',
-                style: TextStyle(
-                    fontFamily: 'HelveticaNeue',
-                    fontWeight: FontWeight.w700,
-                    fontSize: _size.height * .022,
-                    letterSpacing: 0,
-                    color: ColorPalette.darkPurple
-                ),
-              ),
-            ],
-          ),
+          leading == null ? SizedBox(height: 1,) : leading,
           CircleAvatar(
             radius: _size.height * 0.03,
             backgroundImage: NetworkImage('https://i.pravatar.cc/150?img=60'),

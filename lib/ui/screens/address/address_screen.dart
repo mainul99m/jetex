@@ -29,7 +29,29 @@ class AddressScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 30),
         child: Column(
           children: [
-            CustomAppbar(),
+            CustomAppbar(
+              leading: Row(
+                children: [
+                  Image(
+                    height: _size.height * 0.027,
+                    image: AssetImage(
+                        'assets/ui/icons/flag.png'
+                    ),
+                  ),
+                  SizedBox(width: 8,),
+                  Text(
+                    'Address',
+                    style: TextStyle(
+                        fontFamily: 'HelveticaNeue',
+                        fontWeight: FontWeight.w700,
+                        fontSize: _size.height * .022,
+                        letterSpacing: 0,
+                        color: ColorPalette.darkPurple
+                    ),
+                  ),
+                ],
+              ),
+            ),
             SizedBox(height: _size.height * .025,),
             Container(
               width: double.infinity,
