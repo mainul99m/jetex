@@ -28,11 +28,11 @@ class CustomTextField extends StatelessWidget {
         Text(
           title.toUpperCase(),
           style: TextStyle(
-            letterSpacing: 0.1,
+            letterSpacing: 0.0,
               color: ColorPallete.transparentWhite,
               fontFamily: 'HelveticaNeue',
-              fontWeight: FontWeight.w700,
-              fontSize: _height * 0.012,
+              fontWeight: FontWeight.w900,
+              fontSize: _height * 0.0115,
           ),
         ),
         TextField(

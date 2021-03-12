@@ -104,7 +104,9 @@ class RegisterEmailScreen extends StatelessWidget {
               onPressed: (){
                 if(emailController.text.isValidEmail()){
                   FocusScope.of(context).unfocus();
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> RegisterScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> RegisterScreen(
+                    email: emailController.text,
+                  )));
                 } else{
                   final snackBar = SnackBar(content: Text('Invalid email'));
                   _scaffoldKey.currentState.showSnackBar(snackBar);
