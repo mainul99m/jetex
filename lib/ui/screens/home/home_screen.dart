@@ -94,6 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(height: _size.height * 0.033,),
+              //page view
               Container(
                 height: _size.height * 0.17,
                 width: double.infinity,
@@ -108,6 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(height: 12,),
+              //dot indicator
               Center(
                 child: DotsIndicator(
                   dotsCount: 3,
@@ -121,6 +123,33 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.grey[300],
                     activeColor: Colors.grey[400]
                   ),
+                ),
+              ),
+              SizedBox(height: 22,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: HomePageDeliveryStat(
+                  leadingImagePath: 'assets/ui/icons/warehouse.svg',
+                  title: 'In Warehouse',
+                  count: 7,
+                ),
+              ),
+              SizedBox(height: 15,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: HomePageDeliveryStat(
+                  leadingImagePath: 'assets/ui/icons/cargo.svg',
+                  title: 'On The Way',
+                  count: 3,
+                ),
+              ),
+              SizedBox(height: 15,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: HomePageDeliveryStat(
+                  leadingImagePath: 'assets/ui/icons/arrived.svg',
+                  title: 'Arrived',
+                  count: 4,
                 ),
               )
             ],
@@ -240,7 +269,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           style: TextStyle(
                               color: Colors.white,
                               fontFamily: 'HelveticaNeue',
-                              fontWeight: FontWeight.w100,
+                              fontWeight: FontWeight.w300,
                               fontSize: size.height * 0.046
                           ),
                         ),
