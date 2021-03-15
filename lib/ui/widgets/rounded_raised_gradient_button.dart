@@ -24,8 +24,9 @@ class RRGradientButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
-      onPressed: (){},
+      onPressed: onTap,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      elevation: 0,
       padding: const EdgeInsets.all(0.0),
       child: Ink(
         decoration: BoxDecoration(
@@ -58,7 +59,7 @@ class RRGradientButton extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.white,
                   fontFamily: 'HelveticaNeue',
-                  fontWeight: FontWeight.w500
+                  fontWeight: FontWeight.w700
                 ),
               )
             ],

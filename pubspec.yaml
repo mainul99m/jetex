@@ -68,6 +68,12 @@ flutter:
         - asset: assets/fonts/CustomIcons.ttf
     - family: HelveticaNeue
       fonts:
+        - asset: assets/fonts/HelveticaNeue/HelveticaNeue-UltraLight.otf
+          weight: 100
+        - asset: assets/fonts/HelveticaNeue/HelveticaNeue-Thin.ttf
+          weight: 200
+        - asset: assets/fonts/HelveticaNeue/HelveticaNeue-Light.ttf
+          weight: 300
         - asset: assets/fonts/HelveticaNeue/HelveticaNeue-Regular.ttf
           weight: 400
         - asset: assets/fonts/HelveticaNeue/HelveticaNeue-Medium.ttf
