@@ -20,6 +20,66 @@ class ReferralTransactionSnap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(25)
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              children: [
+                SizedBox(height: 14,),
+                CurrencyText(
+                  amount: 20.1,
+                  isSmall: false,
+                )
+              ],
+            ),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      email,
+                      style: TextStyle(
+                          color: ColorPalette.mysticBlue,
+                          fontFamily: 'HelveticaNeue',
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700
+                      ),
+                    ),
+                    SizedBox(width: 8,),
+                    Icon(
+                      CustomIcons.email,
+                      color: ColorPalette.sun,
+                      size: 22,
+                    )
+                  ],
+                ),
+                SizedBox(height: 26,),
+                Text(
+                  date,
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontFamily: 'helveticaNeue',
+                    fontWeight: FontWeight.w700,
+                    color: ColorPalette.mysticBlue,
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+    /*
     return Container(
       height: 100,
       width: double.infinity,
@@ -135,5 +195,6 @@ class ReferralTransactionSnap extends StatelessWidget {
 
       */
     );
+    */
   }
 }

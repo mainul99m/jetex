@@ -77,9 +77,10 @@ class PaymentHistorySnap extends StatelessWidget {
                 Text(
                   date,
                   style: TextStyle(
-                      color: ColorPalette.mysticBlue,
+                      color: ColorPalette.darkGrey,
                       fontFamily: 'HelveticaNeue',
                       fontWeight: FontWeight.w700,
+                      letterSpacing: -.5,
                       fontSize: 12
                   ),
                 ),

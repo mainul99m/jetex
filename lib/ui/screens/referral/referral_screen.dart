@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/color_palette.dart';
+import 'package:jetex_app/utils/custom_icons_icons.dart';
 
 
 class ReferralScreen extends StatefulWidget {
@@ -53,7 +54,11 @@ class _ReferralScreenState extends State<ReferralScreen> {
               _bonusBalanceCard(_size, gradient),
               SizedBox(height: 24,),
 
-              _transactionList()
+              Expanded(
+                child: Container(
+                  child: _transactionList(_size),
+                ),
+              )
               /*
               SingleChildScrollView(
 
@@ -71,7 +76,7 @@ class _ReferralScreenState extends State<ReferralScreen> {
       child: Column(
         children: [
           Container(
-            height: _size.height * 0.16,
+            height: _size.height * 0.17,
             width: double.infinity,
             decoration: BoxDecoration(
                 gradient: gradient,
@@ -130,7 +135,7 @@ class _ReferralScreenState extends State<ReferralScreen> {
     );
   }
 
-  Widget _transactionList() {
+  Widget _transactionList(Size _size) {
 
     return CustomScrollView(
       shrinkWrap: true,
@@ -174,18 +179,33 @@ class _ReferralScreenState extends State<ReferralScreen> {
             ),
           ),
         ),
-        /*
         SliverList(
-          delegate: SliverChildBuilderDelegate(
-              (BuildContext _context, int index){
-                return SliverToBoxAdapter(
-                  child: Text('hello'),
-                );
-              },
-              childCount: 1
-          )
-        )
-        */
+          delegate: SliverChildListDelegate(
+            List.generate(isTransactionListExpanded ? 3 : 1,
+                    (index) => ReferralTransactionSnap(
+              amount: 3.15,
+              email: 'info@jetex.az',
+              date: '16.03.2021',
+            ))
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 10,
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: _shareReferral(_size),
+        ),
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 46,
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: _referralTextInfo(_size),
+        ),
+
       ],
     );
 
@@ -227,6 +247,78 @@ class _ReferralScreenState extends State<ReferralScreen> {
             ],
           ),
         ),
+      ],
+    );
+  }
+
+  Widget _shareReferral(Size _size){
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            height: _size.height * 0.06,
+            width: _size.width * 0.55,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20)
+            ),
+            child: Center(
+              child: Text(
+                'jetex.az/ref=JTX-020696',
+                style: TextStyle(
+                  color: ColorPalette.mysticBlue,
+                  fontFamily: 'HelveticaNeue',
+                  fontWeight: FontWeight.w700,
+                  fontSize: 12
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: _size.height * 0.06,
+            width: _size.width * 0.24,
+            child: RaisedButton(
+              onPressed: (){},
+              elevation: 0,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              color: ColorPalette.darkPurple,
+              child: Center(
+                child: SvgPicture.asset(
+                  'assets/ui/icons/logout.svg',
+                  width: _size.width * 0.055,
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _referralTextInfo(Size _size){
+    return Column(
+      children: [
+        Text(
+          'Get 5% off your next order when you invite a friend.',
+          style: TextStyle(
+            color: ColorPalette.lightPurple,
+            fontFamily: 'HelveticaNeue',
+            fontSize: 18,
+            fontWeight: FontWeight.w500
+          ),
+        ),
+        SizedBox(height: 20,),
+        Text(
+          'After the registration through your link, you will receive the “5%” from your friends first order. Every time your friend makes a purchase with JETEX, we will share a part of our income with you.',
+          style: TextStyle(
+            fontFamily: 'HelveticaNeue',
+            fontSize: 15,
+            color: ColorPalette.mysticBlue,
+            wordSpacing: 5,
+            height: 1.7
+          ),
+        )
       ],
     );
   }

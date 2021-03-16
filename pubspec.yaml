@@ -55,6 +55,8 @@ flutter:
      - assets/ui/icons/cargo.svg
      - assets/ui/icons/arrived.svg
      - assets/ui/icons/referral.svg
+     - assets/ui/logos/flo_logo.svg
+     - assets/ui/icons/logout.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
