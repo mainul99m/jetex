@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jetex_app/ui/screens/navigation_screen.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/custom_icons_icons.dart';
@@ -147,19 +148,27 @@ class RegisterScreen extends StatelessWidget {
               obscureText: true,
             ),
           ),
-          SizedBox(height: _size.height * 0.025,),
+          SizedBox(height: _size.height * 0.029,),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: padding),
             child: AuthButton(
-              onPressed: (){},
+              onPressed: (){
+                print('okay');
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => NavigationScreen()),
+                      (Route<dynamic> route) => false,
+                );
+              },
               color: ColorPalette.sun,
+              height: _size.height * 0.055,
               child: Text(
                 'Log In',
                 style: TextStyle(
                     color: Colors.white,
                     fontFamily: 'HelveticaNeue',
                     fontWeight: FontWeight.w700,
-                    fontSize: _size.height * 0.02
+                    fontSize: _size.height * 0.019
                 ),
               ),
             ),

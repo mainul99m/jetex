@@ -92,7 +92,6 @@ class RegisterEmailScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: padding),
             child: CustomTextField(
               title: 'Your Email',
-              keyboardType: TextInputType.emailAddress,
               controller: emailController,
             ),
           ),
@@ -121,7 +120,7 @@ class RegisterEmailScreen extends StatelessWidget {
                         color: Colors.white,
                         fontFamily: 'HelveticaNeue',
                         fontWeight: FontWeight.w700,
-                        fontSize: _size.height * 0.02
+                        fontSize: _size.height * 0.019
                     ),
                   ),
                 ],

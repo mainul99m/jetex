@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_circular_chart/flutter_circular_chart.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 
@@ -314,6 +315,75 @@ class _HomeScreenState extends State<HomeScreen> {
               gradient: gradient,
               borderRadius: BorderRadius.circular(25)
           ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AnimatedCircularChart(
+                size: Size(size.height * 0.12, size.height * 0.12),
+                holeRadius: size.height * 0.02,
+                initialChartData: <CircularStackEntry>[
+                  new CircularStackEntry(
+                    <CircularSegmentEntry>[
+                      new CircularSegmentEntry(
+                        54,
+                        ColorPalette.sun,
+                        rankKey: 'completed',
+                      ),
+                      new CircularSegmentEntry(
+                        46,
+                        Colors.white,
+                        rankKey: 'remaining',
+                      ),
+                    ],
+                    rankKey: 'progress',
+                  ),
+                ],
+                chartType: CircularChartType.Radial,
+                edgeStyle: SegmentEdgeStyle.round,
+                percentageValues: true,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        '158.20',
+                        style: TextStyle(
+                          fontFamily: 'HelveticaNeue',
+                          fontWeight: FontWeight.w100,
+                          fontSize: size.height * 0.034,
+                          color: Colors.white
+                        ),
+                      ),
+                      Text(
+                        '/300\$',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'HelveticaNeue',
+                          letterSpacing: 0,
+                          fontWeight: FontWeight.w200,
+                          fontSize: size.height * 0.018
+                        ),
+                      )
+                    ],
+                  ),
+                  Text(
+                    '30 Day Window',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'HelveticaNeue',
+                      fontSize: size.height * 0.018,
+                      fontWeight: FontWeight.w300
+                    ),
+                  )
+                ],
+              )
+            ],
+          )
         ),
       ),
     ];

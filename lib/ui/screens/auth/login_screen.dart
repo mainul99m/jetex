@@ -88,7 +88,7 @@ class LoginScreen extends StatelessWidget {
               style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'HelveticaNeue',
-                fontWeight: FontWeight.w500
+                fontWeight: FontWeight.w400
               ),
             ),
           ),
@@ -121,7 +121,7 @@ class LoginScreen extends StatelessWidget {
                   color: Colors.white,
                   fontFamily: 'HelveticaNeue',
                   fontWeight: FontWeight.w700,
-                  fontSize: _size.height * 0.02
+                  fontSize: _size.height * 0.018
                 ),
               ),
             ),
@@ -137,9 +137,10 @@ class LoginScreen extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.white,
                   fontFamily: 'HelveticaNeue',
-                  letterSpacing: 0.01,
+                  letterSpacing: 1,
                   fontSize: _size.height * 0.014,
-                  decoration: TextDecoration.underline
+                  fontWeight: FontWeight.w400,
+                  decoration: TextDecoration.underline,
                 ),
               ),
             ),

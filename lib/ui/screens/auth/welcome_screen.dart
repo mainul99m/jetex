@@ -47,7 +47,7 @@ class WelcomeScreen extends StatelessWidget {
               'Your Online Shopping Assistant',
               style: TextStyle(
                 color: Colors.white,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w400,
                 fontSize: _size.height * 0.017,
                 fontFamily: 'HelveticaNeue'
               ),
@@ -116,7 +116,7 @@ class WelcomeScreen extends StatelessWidget {
               style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'HelveticaNeue',
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w400,
               ),
             ),
           ),
@@ -127,7 +127,7 @@ class WelcomeScreen extends StatelessWidget {
               style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'HelveticaNeue',
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w400,
               ),
             ),
           ),

@@ -17,7 +17,8 @@ class AuthButton extends StatelessWidget {
         color: color,
         shape: StadiumBorder(),
         child: child,
-        onPressed: onPressed
+        onPressed: onPressed,
+        elevation: 0,
       ),
     );
   }

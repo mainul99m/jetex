@@ -31,7 +31,7 @@ class CustomTextField extends StatelessWidget {
             letterSpacing: 0.0,
               color: ColorPalette.transparentWhite,
               fontFamily: 'HelveticaNeue',
-              fontWeight: FontWeight.w900,
+              fontWeight: FontWeight.w500,
               fontSize: _height * 0.0115,
           ),
         ),
