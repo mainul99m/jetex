@@ -18,6 +18,23 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   int _selectedItemIndex = 2;
 
+  PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(
+      initialPage: _selectedItemIndex
+    );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+
   final List<Widget> _navigationScreens = [
     AddressScreen(),
     OrderScreen(),
@@ -59,9 +76,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
               iconData: CustomIcons.location,
               selectedItemIdex: _selectedItemIndex,
               onTap: (){
-                setState(() {
-                  _selectedItemIndex = 0;
-                });
+                _setIndex(0);
               },
             ),
             BnbItem(
@@ -69,9 +84,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
               iconData: CustomIcons.credit_card_alt,
               selectedItemIdex: _selectedItemIndex,
               onTap: (){
-                setState(() {
-                  _selectedItemIndex = 1;
-                });
+                _setIndex(1);
               },
             ),
             BnbItem(
@@ -79,9 +92,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
               iconData: CustomIcons.home,
               selectedItemIdex: _selectedItemIndex,
               onTap: (){
-                setState(() {
-                  _selectedItemIndex = 2;
-                });
+                _setIndex(2);
               },
             ),
             BnbItem(
@@ -89,9 +100,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
               iconData: CustomIcons.link,
               selectedItemIdex: _selectedItemIndex,
               onTap: (){
-                setState(() {
-                  _selectedItemIndex = 3;
-                });
+                _setIndex(3);
               },
             ),
             BnbItem(
@@ -99,16 +108,28 @@ class _NavigationScreenState extends State<NavigationScreen> {
               iconData: CustomIcons.motorcycle,
               selectedItemIdex: _selectedItemIndex,
               onTap: (){
-                setState(() {
-                  _selectedItemIndex = 4;
-                });
+                _setIndex(4);
               },
             ),
           ],
         ),
       ),
       backgroundColor: ColorPalette.lightGrey,
-      body: _navigationScreens[_selectedItemIndex]
+      body: PageView(
+        physics:new NeverScrollableScrollPhysics(),
+        controller: _pageController,
+        children: _navigationScreens,
+      )
+      //_navigationScreens[_selectedItemIndex]
     );
   }
+
+  _setIndex(int index){
+    setState(() {
+      _selectedItemIndex = index;
+    });
+    _pageController.animateToPage(index,
+        duration: Duration(milliseconds: 500), curve: Curves.easeOut);
+  }
+
 }
