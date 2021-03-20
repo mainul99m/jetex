@@ -54,7 +54,7 @@ class SettingListViewSnap extends StatelessWidget {
                       style: TextStyle(
                           fontSize: size.height * 0.015,
                           fontFamily: 'HelveticaNeue',
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w700,
                           color: ColorPalette.darkGrey
                       ),
                     ),

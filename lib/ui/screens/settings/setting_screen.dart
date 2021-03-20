@@ -27,7 +27,7 @@ class SettingScreen extends StatelessWidget {
 
   Widget _appBar(Size size) {
     return Container(
-      padding: EdgeInsets.fromLTRB(12, size.height * 0.033, 30, 6),
+      padding: EdgeInsets.fromLTRB(12, size.height * 0.05, 30, 6),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -47,15 +47,16 @@ class SettingScreen extends StatelessWidget {
   Widget _settingScreen(BuildContext context, Size size){
     return Column(
       children: [
+        SizedBox(height: size.height * 0.025,),
         CircleAvatar(
-          radius: size.height * 0.05,
+          radius: size.height * 0.055,
           backgroundImage: NetworkImage('https://i.pravatar.cc/150?img=60'),
         ),
-        SizedBox(height: size.height * 0.01,),
+        SizedBox(height: size.height * 0.02,),
         Text(
           'Jamil Alizada',
           style: TextStyle(
-            fontSize: size.height * 0.024,
+            fontSize: size.height * 0.021,
             fontFamily: 'HelveticaNeue',
             fontWeight: FontWeight.w500
           ),
@@ -65,18 +66,18 @@ class SettingScreen extends StatelessWidget {
           child: Text(
             'JTX-111750',
             style: TextStyle(
-              fontSize: size.height * 0.018,
+              fontSize: size.height * 0.017,
               fontFamily: 'HelveticaNeue',
               fontWeight: FontWeight.w400,
               color: ColorPalette.darkGrey
             ),
           ),
         ),
-        SizedBox(height: 10,),
+        SizedBox(height: size.height * 0.008,),
         FlatButton(
           onPressed: (){},
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(18.0),
+              borderRadius: BorderRadius.circular(100.0),
               side: BorderSide(
                 color: ColorPalette.darkPurple,
                 width: 2
@@ -84,7 +85,7 @@ class SettingScreen extends StatelessWidget {
           ),
           color: Colors.transparent,
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(12.0, 5, 12, 5),
+            padding: const EdgeInsets.fromLTRB(14, 11, 14, 11),
             child: Text(
               'View Profile',
               style: TextStyle(
@@ -94,20 +95,20 @@ class SettingScreen extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 30,),
+        SizedBox(height: size.height * 0.034,),
         Opacity(
           opacity: 0.69,
           child: Text(
             'SETTINGS',
             style: TextStyle(
-                fontSize: size.height * 0.014,
+                fontSize: size.height * 0.013,
                 fontFamily: 'HelveticaNeue',
                 fontWeight: FontWeight.w700,
                 color: ColorPalette.darkGrey
             ),
           ),
         ),
-        SizedBox(height: 15,),
+        SizedBox(height: size.height * 0.018,),
         SettingListViewSnap(
           leadingText: 'Language',
           trailingText: 'English',
@@ -131,6 +132,7 @@ class SettingScreen extends StatelessWidget {
           leadingText: 'Contact Support',
           onTap: (){},
         ),
+        SizedBox(height: size.height * 0.006,),
         SunButton(
           title: 'Log Out',
           onTap: (){},

@@ -37,7 +37,7 @@ class _SettingNotificationListViewSnapState extends State<SettingNotificationLis
               ),
             ),
             Transform.scale(
-              scale: 0.7,
+              scale: 0.8,
               alignment: Alignment.centerRight,
               child: CupertinoSwitch(
                 value: _value,

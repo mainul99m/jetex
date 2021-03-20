@@ -1,8 +1,10 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jetex_app/models/credit_card_model.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/color_palette.dart';
+import 'package:jetex_app/utils/custom_icons_icons.dart';
 
 class PaymentMethods extends StatefulWidget {
   @override
@@ -46,7 +48,7 @@ class _PaymentMethodsState extends State<PaymentMethods> {
 
   Widget _appBar(Size size) {
     return Container(
-      padding: EdgeInsets.fromLTRB(12, size.height * 0.044, 30, 6),
+      padding: EdgeInsets.fromLTRB(12, size.height * 0.05, 30, 6),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -67,7 +69,7 @@ class _PaymentMethodsState extends State<PaymentMethods> {
       slivers: [
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+            padding: EdgeInsets.symmetric(vertical: size.height * 0.02, horizontal: 40),
             child: Text(
               'Payment Methods',
               style: TextStyle(
@@ -83,20 +85,55 @@ class _PaymentMethodsState extends State<PaymentMethods> {
         SliverList(
           delegate: SliverChildListDelegate(
             List.generate(creditCards.length, (index) => Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-              child: CreditCardSnap(creditCard: creditCards[index],),
+              padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+              child: CreditCardSnap(
+                creditCard: creditCards[index],
+                height: size.height * 0.19,
+              ),
             ))
           ),
         ),
 
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Container(
-              height: 160,
-              decoration: BoxDecoration(
-                color: Colors.green,
-                borderRadius: BorderRadius.circular(26),
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+            child: DottedBorder(
+              borderType: BorderType.RRect,
+              radius: Radius.circular(26),
+              strokeCap: StrokeCap.round,
+              strokeWidth: 5,
+              dashPattern: [20,19],
+              color: Colors.grey[600],
+              child: InkWell(
+                onTap: (){
+                  print('Add Card');
+                },
+                child: Container(
+                  height: 160,
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.add_circle,
+                          size: 60,
+                          color: Colors.grey[400],
+                        ),
+                        SizedBox(height: 10,),
+                        Text(
+                          'Add A New Card',
+                          style: TextStyle(
+                            fontFamily: 'HelveticaNeue',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16.5,
+                            color: Colors.grey[600]
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
