@@ -39,39 +39,7 @@ class RegisterEmailScreen extends StatelessWidget {
           SizedBox(height: _size.height * 0.06,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: padding-20),
-            child: SizedBox(
-              width: 100,
-              child: FlatButton(
-                  splashColor: Colors.transparent,
-                  // highlightColor: Colors.transparent,
-                  onPressed: (){
-                    Navigator.of(context).pop();
-                  },
-                  child: Row(
-                    children: [
-                      RotatedBox(
-                        quarterTurns: 1,
-                        child: RotatedBox(
-                          quarterTurns: 1,
-                          child: Icon(
-                            CustomIcons.circular_arrow_right,
-                            color: ColorPalette.sun,
-                            size: 18,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 5,),
-                      Text(
-                        'Back',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'HelveticaNeue'
-                        ),
-                      ),
-                    ],
-                  )
-              ),
-            ),
+            child: TopBackButton(width: 100,)
           ),
           SizedBox(height: _size.height * 0.018,),
           Padding(
@@ -109,11 +77,11 @@ class RegisterEmailScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
-                      Icons.email,
+                      CustomIcons.email,
                     size: 18,
                     color: Colors.white,
                   ),
-                  SizedBox(width: 4,),
+                  SizedBox(width: 5,),
                   Text(
                     'Continue with Email',
                     style: TextStyle(

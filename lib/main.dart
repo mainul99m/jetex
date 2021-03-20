@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Jetex',
       home:
-      NavigationScreen(),
-      //WelcomeScreen()
+     // NavigationScreen(),
+      WelcomeScreen()
     );
   }
 }

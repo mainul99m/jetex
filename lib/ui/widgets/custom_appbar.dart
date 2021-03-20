@@ -1,5 +1,6 @@
 //import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:jetex_app/ui/screens/settings/setting_screen.dart';
 
 class CustomAppbar extends StatelessWidget {
 
@@ -21,14 +22,23 @@ class CustomAppbar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           leading == null ? SizedBox(height: 1,) : leading,
-          CircleAvatar(
-            radius: _size.height * 0.03,
-            backgroundImage: NetworkImage('https://i.pravatar.cc/150?img=60'),
-            /*
-            CachedNetworkImageProvider(
-              'https://i.pravatar.cc/150?img=60',
+          InkWell(
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SettingScreen()),
+              );
+            },
+            borderRadius: BorderRadius.circular(_size.height * 0.03),
+            child: CircleAvatar(
+              radius: _size.height * 0.03,
+              backgroundImage: NetworkImage('https://i.pravatar.cc/150?img=60'),
+              /*
+              CachedNetworkImageProvider(
+                'https://i.pravatar.cc/150?img=60',
+              ),
+              */
             ),
-            */
           )
         ],
       ),

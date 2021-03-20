@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
+
 class ColorPalette{
 
   static const Color lightGrey = Color(0xFFF2F2F2);
@@ -17,4 +19,19 @@ class ColorPalette{
   static const Color sun = Color(0xFFFBB018);
 
   static const Color transparentWhite = Color.fromRGBO(255, 255, 255, 0.75);
+
+  static const Gradient visaGradient = LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [Color(0xFF070707), Color(0xFF134269)],
+      tileMode: TileMode.repeated
+  );
+
+  static const Gradient mastercardGradient = LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [Color(0xFF070707), Color(0xFF672600)],
+      tileMode: TileMode.repeated
+  );
+
 }

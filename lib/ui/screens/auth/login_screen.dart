@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:jetex_app/ui/screens/navigation_screen.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
-import 'package:jetex_app/utils/custom_icons_icons.dart';
 
 
 class LoginScreen extends StatelessWidget {
@@ -33,38 +33,8 @@ class LoginScreen extends StatelessWidget {
           SizedBox(height: _size.height * 0.06,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: padding-20),
-            child: SizedBox(
+            child: TopBackButton(
               width: 100,
-              child: FlatButton(
-                splashColor: Colors.transparent,
-                // highlightColor: Colors.transparent,
-                onPressed: (){
-                  Navigator.of(context).pop();
-                },
-                child: Row(
-                  children: [
-                    RotatedBox(
-                      quarterTurns: 1,
-                      child: RotatedBox(
-                        quarterTurns: 1,
-                        child: Icon(
-                            CustomIcons.circular_arrow_right,
-                          color: ColorPalette.sun,
-                          size: 18,
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 5,),
-                    Text(
-                      'Back',
-                      style: TextStyle(
-                          color: Colors.white,
-                        fontFamily: 'HelveticaNeue'
-                      ),
-                    ),
-                  ],
-                )
-              ),
             ),
           ),
           SizedBox(height: _size.height * 0.018,),
@@ -112,7 +82,13 @@ class LoginScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: padding),
             child: AuthButton(
-              onPressed: (){},
+              onPressed: (){
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => NavigationScreen()),
+                      (Route<dynamic> route) => false,
+                );
+              },
               color: ColorPalette.sun,
               height: _size.height * 0.055,
               child: Text(
