@@ -43,7 +43,7 @@ class _OrderScreenState extends State<OrderScreen> {
         physics: new NeverScrollableScrollPhysics(),
         children: [
           _orderScreen(_size),
-          NewOrderScreen(
+          NewOrdersScreen(
             onTap: (){
               _setScreenID(0);
             },

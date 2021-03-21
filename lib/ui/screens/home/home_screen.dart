@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_circular_chart/flutter_circular_chart.dart';
+import 'package:jetex_app/ui/screens/home/create_new_order_screen.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 
@@ -71,7 +72,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     RRGradientButton(
                       onTap: (){
-                        print(_pageController.page);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CreateNewOrderScreen()),
+                        );
                       },
                       gradient: _gradient,
                       height: _size.height * 0.064,

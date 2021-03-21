@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 
-class NewOrderScreen extends StatelessWidget {
+class NewOrdersScreen extends StatelessWidget {
   final VoidCallback onTap;
 
-  const NewOrderScreen({Key key, this.onTap}) : super(key: key);
+  const NewOrdersScreen({Key key, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

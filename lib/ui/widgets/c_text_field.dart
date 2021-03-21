@@ -5,18 +5,18 @@ import 'package:jetex_app/utils/color_palette.dart';
 class CustomTextField extends StatelessWidget {
 
   final String title;
+  final bool isAuth;
   final TextEditingController controller;
   final TextInputType keyboardType;
   final bool obscureText;
-  final Color cursorColor;
 
   const CustomTextField({Key key,
     @required
     this.title,
+    this.isAuth = true,
     this.controller,
     this.keyboardType,
     this.obscureText,
-    this.cursorColor
   }) : super(key: key);
 
   @override
@@ -29,19 +29,19 @@ class CustomTextField extends StatelessWidget {
           title.toUpperCase(),
           style: TextStyle(
             letterSpacing: 0.0,
-              color: ColorPalette.transparentWhite,
+              color: isAuth ? ColorPalette.transparentWhite : ColorPalette.sun,
               fontFamily: 'HelveticaNeue',
-              fontWeight: FontWeight.w500,
-              fontSize: _height * 0.0115,
+              fontWeight: isAuth ? FontWeight.w500 : FontWeight.w700,
+              fontSize: isAuth ? _height * 0.0115 : _height * 0.014,
           ),
         ),
         TextField(
           controller: controller,
           obscureText: obscureText==null ? false : obscureText,
           keyboardType: keyboardType,
-          cursorColor: cursorColor == null? Colors.white : cursorColor,
+          cursorColor: isAuth ? Colors.white : ColorPalette.darkPurple,
           style: TextStyle(
-            color: Colors.white,
+            color: isAuth ? Colors.white : ColorPalette.darkPurple,
             fontFamily: 'HelveticaNeue',
             fontWeight: FontWeight.w500,
             fontSize: _height * 0.018
@@ -50,13 +50,19 @@ class CustomTextField extends StatelessWidget {
             contentPadding: EdgeInsets.fromLTRB(12, _height * .018, 12, _height * .014),
             isDense: true,
             enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: ColorPalette.transparentWhite),
+              borderSide: BorderSide(
+                  color: isAuth ? ColorPalette.transparentWhite : Colors.grey
+              ),
             ),
             focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: ColorPalette.transparentWhite),
+              borderSide: BorderSide(
+                  color: isAuth ? ColorPalette.transparentWhite : Colors.grey
+              ),
             ),
             border: UnderlineInputBorder(
-              borderSide: BorderSide(color: ColorPalette.transparentWhite),
+              borderSide: BorderSide(
+                  color: isAuth ? ColorPalette.transparentWhite : Colors.grey
+              ),
             ),
           ),
         ),
