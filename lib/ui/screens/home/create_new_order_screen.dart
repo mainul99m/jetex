@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jetex_app/ui/screens/home/select_payment_method_screen.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 
@@ -38,7 +39,7 @@ class CreateNewOrderScreen extends StatelessWidget {
             ),
             SizedBox(height: _size.height * 0.04,),
             Expanded(
-              child: _createNewOrder(_size),
+              child: _createNewOrder(context, _size),
             )
           ],
         ),
@@ -46,7 +47,7 @@ class CreateNewOrderScreen extends StatelessWidget {
     );
   }
 
-  Widget _createNewOrder(Size _size){
+  Widget _createNewOrder(BuildContext context, Size _size){
     const EdgeInsetsGeometry _padding = EdgeInsets.fromLTRB(
       30, 0, 30, 26
     );
@@ -178,7 +179,10 @@ class CreateNewOrderScreen extends StatelessWidget {
                   sliver: SliverToBoxAdapter(
                       child: SunButton(
                         onTap: (){
-
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => SelectPaymentMethodScreen()),
+                          );
                         },
                         title: 'Proceed',
                       )

@@ -34,4 +34,10 @@ class ColorPalette{
       tileMode: TileMode.repeated
   );
 
+  static const Gradient darkPurpleGradient = LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: [ColorPalette.lightPurple, ColorPalette.darkPurple]
+  );
+
 }

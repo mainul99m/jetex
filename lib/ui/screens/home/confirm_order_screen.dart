@@ -36,8 +36,66 @@ class ConfirmOrderScreen extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(height: _size.height * 0.04,),
+            Expanded(
+              child: _addPaymentMethod(context, _size),
+            )
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _addPaymentMethod(BuildContext context, Size _size){
+    const EdgeInsetsGeometry _padding = EdgeInsets.fromLTRB(
+        30, 0, 30, 26
+    );
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(30),
+            topLeft: Radius.circular(30),
+          ),
+          boxShadow: [BoxShadow(
+            color: Colors.grey[300],
+            blurRadius: 10,
+          )]
+      ),
+      child: Column(
+        children: [
+          Container(
+            height: 70,
+            child: Center(
+              child: TopBackButton(
+                width: 100,
+                color: ColorPalette.mysticBlue,
+              ),
+            ),
+          ),
+          Expanded(
+            child: CustomScrollView(
+              slivers: [
+
+                SliverToBoxAdapter(
+                  child: SizedBox(height: 4,),
+                ),
+                SliverPadding(
+                  padding: _padding,
+                  sliver: SliverToBoxAdapter(
+                      child: SunButton(
+                        onTap: (){
+
+                        },
+                        title: 'Confirm',
+                      )
+                  ),
+                ),
+
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
