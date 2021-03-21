@@ -116,7 +116,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
       ),
       backgroundColor: ColorPalette.lightGrey,
       body: PageView(
-        physics:new NeverScrollableScrollPhysics(),
+        physics: new NeverScrollableScrollPhysics(),
         controller: _pageController,
         children: _navigationScreens,
       )

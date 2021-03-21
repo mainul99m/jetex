@@ -5,11 +5,13 @@ import 'package:jetex_app/utils/custom_icons_icons.dart';
 class TopBackButton extends StatelessWidget {
   final double width;
   final Color color;
+  final VoidCallback onTap;
 
   const TopBackButton({
     Key key,
     this.width,
-    this.color = Colors.white
+    this.color = Colors.white,
+    this.onTap
   }) : super(key: key);
 
   @override
@@ -19,9 +21,9 @@ class TopBackButton extends StatelessWidget {
       child: FlatButton(
           splashColor: Colors.transparent,
           // highlightColor: Colors.transparent,
-          onPressed: (){
+          onPressed: onTap == null ? (){
             Navigator.of(context).pop();
-          },
+          } : onTap,
           child: Row(
             children: [
               RotatedBox(

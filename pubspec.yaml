@@ -33,6 +33,7 @@ dependencies:
   flutter_svg: ^0.19.0
   flutter_circular_chart: ^0.1.0
   dotted_border: ^1.0.7
+  expansion_card: ^0.1.0
 
 dev_dependencies:
   flutter_test:

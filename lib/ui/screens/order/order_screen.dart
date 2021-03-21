@@ -1,42 +1,83 @@
+import 'package:expansion_card/expansion_card.dart';
 import 'package:flutter/material.dart';
+import 'package:jetex_app/ui/screens/order/new_order_screen.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/color_palette.dart';
-
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jetex_app/utils/custom_icons_icons.dart';
 
-class OrderScreen extends StatelessWidget {
+class OrderScreen extends StatefulWidget {
+  @override
+  _OrderScreenState createState() => _OrderScreenState();
+}
+
+class _OrderScreenState extends State<OrderScreen> {
+
+  int screenID  = 0;
+  PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(
+        initialPage: screenID
+    );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: ColorPalette.lightGrey,
-      body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 30),
-          child: Column(
-            children: [
-              CustomAppbar(
-                leading: Text(
-                  'Orders',
-                  style: TextStyle(
-                      fontFamily: 'HelveticaNeue',
-                      fontWeight: FontWeight.w700,
-                      fontSize: _size.height * .022,
-                      letterSpacing: 0,
-                      color: ColorPalette.darkPurple
-                  ),
+      body: PageView(
+        controller: _pageController,
+        physics: new NeverScrollableScrollPhysics(),
+        children: [
+          _orderScreen(_size),
+          NewOrderScreen(
+            onTap: (){
+              _setScreenID(0);
+            },
+          )
+        ],
+      )
+    );
+  }
+
+  Widget _orderScreen(Size _size){
+    return Container(
+        padding: EdgeInsets.symmetric(horizontal: 30),
+        child: Column(
+          children: [
+            CustomAppbar(
+              leading: Text(
+                'Orders',
+                style: TextStyle(
+                    fontFamily: 'HelveticaNeue',
+                    fontWeight: FontWeight.w700,
+                    fontSize: _size.height * .022,
+                    letterSpacing: 0,
+                    color: ColorPalette.darkPurple
                 ),
               ),
-              SizedBox(height: _size.height * 0.01,),
-              Expanded(
-                child: Container(
-                  child: _orderView(),
-                ),
-              )
-            ],
-          )
-      ),
+            ),
+            SizedBox(height: _size.height * 0.01,),
+            Expanded(
+              child: Container(
+                child: _orderView(),
+              ),
+            )
+          ],
+        )
     );
   }
 
@@ -49,7 +90,7 @@ class OrderScreen extends StatelessWidget {
         SliverToBoxAdapter(
           child: OrderViewButton(
             onTap: (){
-              
+              _setScreenID(1);
             },
             height: 60,
             title: 'New Orders',
@@ -96,4 +137,13 @@ class OrderScreen extends StatelessWidget {
       ],
     );
   }
+
+  _setScreenID(int id){
+    setState(() {
+      screenID = id;
+    });
+    _pageController.animateToPage(id,
+        duration: Duration(milliseconds: 500), curve: Curves.easeOutCubic);
+  }
+
 }

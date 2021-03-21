@@ -12,6 +12,7 @@ export 'listview_snap/delivery_snap.dart';
 export 'listview_snap/setting_view_list_snap.dart';
 export 'listview_snap/setting_view_notification_toggle_snap.dart';
 export 'listview_snap/credit_card_snap.dart';
+export 'listview_snap/expandable_order_snap.dart';
 export 'currency_text.dart';
 export 'order_view_button.dart';
 export 'back_button.dart';

@@ -3,36 +3,41 @@ import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 
 class NewOrderScreen extends StatelessWidget {
+  final VoidCallback onTap;
+
+  const NewOrderScreen({Key key, this.onTap}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: ColorPalette.lightGrey,
-      body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 30),
-          child: Column(
-            children: [
-              CustomAppbar(
-                leading: Text(
-                  'Orders',
-                  style: TextStyle(
-                      fontFamily: 'HelveticaNeue',
-                      fontWeight: FontWeight.w700,
-                      fontSize: _size.height * .022,
-                      letterSpacing: 0,
-                      color: ColorPalette.darkPurple
-                  ),
-                ),
+    return Container(
+        padding: EdgeInsets.symmetric(horizontal: 30),
+        child: Column(
+          children: [
+            CustomAppbar(
+              leading: TopBackButton(
+                color: ColorPalette.darkPurple,
+                onTap: onTap,
               ),
-              SizedBox(height: _size.height * 0.01,),
-              Expanded(
-                child: Container(
-                  // child: _orderView(),
-                ),
-              )
-            ],
-          )
-      ),
+            ),
+            SizedBox(height: _size.height * 0.01,),
+            Expanded(
+                child: _newOrderView()
+            )
+          ],
+        )
+    );
+  }
+  Widget _newOrderView(){
+    return CustomScrollView(
+      slivers: [
+        SliverList(
+          delegate: SliverChildListDelegate(
+              List.generate(4, (index) => ExpandableOrderSnap())
+          ),
+        ),
+        SliverToBoxAdapter(child: SizedBox(height: 10,))
+      ],
     );
   }
 }
