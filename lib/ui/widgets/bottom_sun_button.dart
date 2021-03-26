@@ -23,7 +23,7 @@ class SunButton extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
             color: ColorPalette.sun,
-            borderRadius: BorderRadius.circular(20)
+            borderRadius: BorderRadius.circular(24)
           ),
           child: Center(
             child: Text(

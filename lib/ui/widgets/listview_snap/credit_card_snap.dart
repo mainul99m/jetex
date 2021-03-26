@@ -6,11 +6,13 @@ class CreditCardSnap extends StatelessWidget {
 
   final CreditCard creditCard;
   final double height;
+  final bool hasShadow;
 
   const CreditCardSnap({
     Key key,
     @required this.creditCard,
-    this.height = 160
+    this.height = 160,
+    this.hasShadow = false
   }) : super(key: key);
 
 
@@ -24,6 +26,13 @@ class CreditCardSnap extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: gradient,
         borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: hasShadow ? Colors.grey[500] : Colors.transparent,
+            blurRadius: 5,
+            offset: Offset(2, 2)
+          )
+        ]
       ),
       child: Container(
         child: Row(

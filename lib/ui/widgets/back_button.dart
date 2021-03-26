@@ -5,12 +5,14 @@ import 'package:jetex_app/utils/custom_icons_icons.dart';
 class TopBackButton extends StatelessWidget {
   final double width;
   final Color color;
+  final bool isCancelButton;
   final VoidCallback onTap;
 
   const TopBackButton({
     Key key,
     this.width,
     this.color = Colors.white,
+    this.isCancelButton = false,
     this.onTap
   }) : super(key: key);
 
@@ -31,7 +33,7 @@ class TopBackButton extends StatelessWidget {
                 child: RotatedBox(
                   quarterTurns: 1,
                   child: Icon(
-                    CustomIcons.circular_arrow_right,
+                    isCancelButton ? Icons.cancel : CustomIcons.circular_arrow_right,
                     color: ColorPalette.sun,
                     size: 18,
                   ),
@@ -39,7 +41,7 @@ class TopBackButton extends StatelessWidget {
               ),
               SizedBox(width: 5,),
               Text(
-                'Back',
+                isCancelButton ? 'Cancel' : 'Back',
                 style: TextStyle(
                     color: color,
                     fontFamily: 'HelveticaNeue'

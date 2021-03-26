@@ -66,7 +66,7 @@ class SelectPaymentMethodScreen extends StatelessWidget {
 
   Widget _addPaymentMethod(BuildContext context, Size _size){
     const EdgeInsetsGeometry _padding = EdgeInsets.fromLTRB(
-        30, 0, 30, 26
+        40, 0, 40, 26
     );
     return Container(
       decoration: BoxDecoration(
@@ -98,10 +98,11 @@ class SelectPaymentMethodScreen extends StatelessWidget {
                 SliverList(
                   delegate: SliverChildListDelegate(
                     List.generate(creditCards.length, (index) => Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+                      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
                       child: CreditCardSnap(
                         creditCard: creditCards[index],
-                        height: 120,
+                        height: 136,
+                        hasShadow: true,
                       ),
                     ))
                   ),
@@ -121,7 +122,7 @@ class SelectPaymentMethodScreen extends StatelessWidget {
                               Icon(
                                 Icons.add_circle,
                                 size: 24,
-                                color: Colors.grey[700],
+                                color: Colors.grey[600],
                               ),
                               SizedBox(width: 4,),
                               Text(
@@ -130,7 +131,7 @@ class SelectPaymentMethodScreen extends StatelessWidget {
                                     fontFamily: 'HelveticaNeue',
                                     fontWeight: FontWeight.w400,
                                     fontSize: 15,
-                                    color: Colors.grey[700]
+                                    color: Colors.grey[600]
                                 ),
 
                               )
@@ -141,15 +142,18 @@ class SelectPaymentMethodScreen extends StatelessWidget {
                     )
                 ),
                 //Or
-                SliverToBoxAdapter(
-                  child: Center(
-                    child: Text(
-                      'Or',
-                      style: TextStyle(
-                          fontFamily: 'HelveticaNeue',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15,
-                          color: Colors.grey[700]
+                SliverPadding(
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 8),
+                  sliver: SliverToBoxAdapter(
+                    child: Center(
+                      child: Text(
+                        'Or',
+                        style: TextStyle(
+                            fontFamily: 'HelveticaNeue',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
+                            color: Colors.grey[700]
+                        ),
                       ),
                     ),
                   ),
@@ -169,18 +173,25 @@ class SelectPaymentMethodScreen extends StatelessWidget {
                   ),
                 ),
 
+                SliverToBoxAdapter(
+                  child: SizedBox(height: 20,),
+                ),
+
                 SliverPadding(
                   padding: _padding,
                   sliver: SliverToBoxAdapter(
-                    child: TLBalanceCard(),
+                    child: TLBalanceCard(
+                      hasShadow: true,
+                    ),
                   ),
                 ),
 
 
                 //bottom proceed buttons
                 SliverToBoxAdapter(
-                  child: SizedBox(height: 4,),
+                  child: SizedBox(height: 0,),
                 ),
+
                 SliverPadding(
                   padding: _padding,
                   sliver: SliverToBoxAdapter(

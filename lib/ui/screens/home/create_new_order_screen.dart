@@ -49,7 +49,7 @@ class CreateNewOrderScreen extends StatelessWidget {
 
   Widget _createNewOrder(BuildContext context, Size _size){
     const EdgeInsetsGeometry _padding = EdgeInsets.fromLTRB(
-      30, 0, 30, 26
+      40, 0, 40, 26
     );
     return Container(
       decoration: BoxDecoration(

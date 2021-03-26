@@ -2,6 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 
 class  TLBalanceCard extends StatelessWidget {
+
+  final double balance;
+  final bool hasShadow;
+
+  const TLBalanceCard({
+    Key key,
+    this.balance,
+    this.hasShadow = false
+  }) : super(key: key);
+
+
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -10,7 +22,14 @@ class  TLBalanceCard extends StatelessWidget {
       width: 200,
       decoration: BoxDecoration(
           gradient: ColorPalette.darkPurpleGradient,
-          borderRadius: BorderRadius.circular(25)
+          borderRadius: BorderRadius.circular(25),
+        boxShadow: [
+          BoxShadow(
+            color: hasShadow ? Colors.grey[300] : Colors.transparent,
+            offset: Offset(4,2),
+            blurRadius: 6
+          )
+        ]
       ),
       child: Stack(
         children: [
