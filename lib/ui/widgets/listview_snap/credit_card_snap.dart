@@ -1,7 +1,9 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jetex_app/models/credit_card_model.dart';
 import 'package:jetex_app/utils/color_palette.dart';
+
 class CreditCardSnap extends StatelessWidget {
 
   final CreditCard creditCard;
@@ -89,13 +91,13 @@ class CreditCardSnap extends StatelessWidget {
   }
 
   String _getCardLogoLink(String cardType){
-    if(cardType == 'm')
+    if(cardType == 'MasterCard')
       return 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg';
     return 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg';
   }
 
   Gradient _getGradientFromCardType(String cardType){
-    if(cardType == 'm'){
+    if(cardType == 'MasterCard'){
       return ColorPalette.mastercardGradient;
     }
     return ColorPalette.visaGradient;

@@ -1,14 +1,14 @@
 class Order{
-  final String trackingId;
-  final String country;
-  final String date;
-  final String timeRange;
-  final int quantity;
-  final double price;
-  final double deliveryFee;
-  final String additionalNotes;
-  final String company;
-  final OrderStatus orderStatus;
+  String trackingId;
+  String country;
+  String date;
+  String timeRange;
+  int quantity;
+  double price;
+  double deliveryFee;
+  String additionalNotes;
+  String company;
+  OrderStatus orderStatus;
 
   Order({
     this.trackingId,
@@ -20,7 +20,7 @@ class Order{
     this.deliveryFee,
     this.additionalNotes,
     this.company,
-    this.orderStatus
+    this.orderStatus,
   });
 }
 

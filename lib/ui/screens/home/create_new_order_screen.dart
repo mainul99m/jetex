@@ -1,10 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jetex_app/models/new_order.dart';
 import 'package:jetex_app/ui/screens/home/select_payment_method_screen.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 
-class CreateNewOrderScreen extends StatelessWidget {
+class CreateNewOrderScreen extends StatefulWidget {
+  @override
+  _CreateNewOrderScreenState createState() => _CreateNewOrderScreenState();
+}
+
+class _CreateNewOrderScreenState extends State<CreateNewOrderScreen> {
+
+  final countryController = TextEditingController();
+  final linkController = TextEditingController();
+  final quantityController = TextEditingController();
+  final priceController = TextEditingController();
+  final deliveryFeeController = TextEditingController();
+  final additionalNotesController = TextEditingController();
+
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    countryController.dispose();
+    linkController.dispose();
+    quantityController.dispose();
+    priceController.dispose();
+    deliveryFeeController.dispose();
+    additionalNotesController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
@@ -84,6 +111,7 @@ class CreateNewOrderScreen extends StatelessWidget {
                     child: CustomTextField(
                       title: 'Country',
                       isAuth: false,
+                      controller: countryController,
                     ),
                   ),
                 ),
@@ -94,6 +122,8 @@ class CreateNewOrderScreen extends StatelessWidget {
                     child: CustomTextField(
                       title: 'Link',
                       isAuth: false,
+                      controller: linkController,
+                      keyboardType: TextInputType.url,
                     ),
                   ),
                 ),
@@ -104,6 +134,8 @@ class CreateNewOrderScreen extends StatelessWidget {
                     child: CustomTextField(
                       title: 'Quantity',
                       isAuth: false,
+                      controller: quantityController,
+                      keyboardType: TextInputType.number,
                     ),
                   ),
                 ),
@@ -114,6 +146,8 @@ class CreateNewOrderScreen extends StatelessWidget {
                     child: CustomTextField(
                       title: 'Price (TL)',
                       isAuth: false,
+                      controller: priceController,
+                      keyboardType: TextInputType.number,
                     ),
                   ),
                 ),
@@ -124,6 +158,8 @@ class CreateNewOrderScreen extends StatelessWidget {
                     child: CustomTextField(
                       title: 'Delivery Fee (TL)',
                       isAuth: false,
+                      controller: deliveryFeeController,
+                      keyboardType: TextInputType.number,
                     ),
                   ),
                 ),
@@ -134,6 +170,7 @@ class CreateNewOrderScreen extends StatelessWidget {
                     child: CustomTextField(
                       title: 'Additional Notes',
                       isAuth: false,
+                      controller: additionalNotesController,
                     ),
                   ),
                 ),
@@ -179,9 +216,19 @@ class CreateNewOrderScreen extends StatelessWidget {
                   sliver: SliverToBoxAdapter(
                       child: SunButton(
                         onTap: (){
+
+                          final order = NewOrder(
+                            country: countryController.text,
+                            link: linkController.text,
+                            quantity: quantityController.text == '' ? 0 : int.parse(quantityController.text),
+                            price: priceController.text == '' ? 0 : double.parse(priceController.text),
+                            deliveryFee: deliveryFeeController.text == '' ? 0 : double.parse(deliveryFeeController.text),
+                            additionalNotes: additionalNotesController.text
+                          );
+
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => SelectPaymentMethodScreen()),
+                            MaterialPageRoute(builder: (context) => SelectPaymentMethodScreen(order: order,)),
                           );
                         },
                         title: 'Proceed',
