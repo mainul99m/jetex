@@ -2,12 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jetex_app/ui/screens/settings/payment_methods_screen.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
+import 'package:jetex_app/utils/app_language.dart';
+import 'package:jetex_app/utils/app_localization.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 import 'package:jetex_app/utils/custom_icons_icons.dart';
+import 'package:provider/provider.dart';
 
-class SettingScreen extends StatelessWidget {
+class SettingScreen extends StatefulWidget {
+  @override
+  _SettingScreenState createState() => _SettingScreenState();
+}
+
+class _SettingScreenState extends State<SettingScreen> {
+
+  String _selectedLanguage;
+  AppLanguage appLanguage;
+
+  // Map<String, String> languages = {
+  //   'English' : 'en',
+  //   'Turkish' : 'tr'
+  // };
+  //
+  List<String> languages = ['English', 'Turkish'];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    appLanguage = Provider.of<AppLanguage>(context);
+    _selectedLanguage = _getSelectedLanguage();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
@@ -42,7 +69,6 @@ class SettingScreen extends StatelessWidget {
       ),
     );
   }
-
 
   Widget _settingScreen(BuildContext context, Size size){
     return Column(
@@ -99,7 +125,7 @@ class SettingScreen extends StatelessWidget {
         Opacity(
           opacity: 0.69,
           child: Text(
-            'SETTINGS',
+            AppLocalizations.of(context).translate('Settings'),
             style: TextStyle(
                 fontSize: size.height * 0.013,
                 fontFamily: 'HelveticaNeue',
@@ -109,11 +135,16 @@ class SettingScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: size.height * 0.018,),
+
+        _languageSelection(size),
+        /*
         SettingListViewSnap(
           leadingText: 'Language',
           trailingText: 'English',
           onTap: (){},
         ),
+
+         */
         SettingListViewSnap(
           leadingText: 'Payment Method',
           onTap: (){
@@ -141,6 +172,108 @@ class SettingScreen extends StatelessWidget {
     );
   }
 
+  Widget _languageSelection(Size size){
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 7),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 30),
+        height: size.height * 0.066,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20)
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              AppLocalizations.of(context).translate('Language'),
+              style: TextStyle(
+                  fontSize: size.height * 0.018,
+                  fontFamily: 'HelveticaNeue',
+                  fontWeight: FontWeight.w700,
+                  color: ColorPalette.darkPurple
+              ),
+            ),
+            DropdownButton<String>(
+              value: _selectedLanguage,
+              style:  TextStyle(
+                  fontSize: size.height * 0.015,
+                  fontFamily: 'HelveticaNeue',
+                  fontWeight: FontWeight.w700,
+                  color: ColorPalette.darkGrey
+              ),
+              icon: Icon(
+                CustomIcons.circular_arrow_right,
+                color: ColorPalette.sun,
+                size: size.height * 0.018,
+              ),
+              onChanged: (value){
+                _changeLanguage(value);
+              },
+              items: languages.map<DropdownMenuItem<String>>((String value){
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            ),
+            /*
+            Row(
+              children: [
+                Opacity(
+                  opacity: 0.7,
+                  child: Text(
+                    _selectedLanguage,
+                    style: TextStyle(
+                        fontSize: size.height * 0.015,
+                        fontFamily: 'HelveticaNeue',
+                        fontWeight: FontWeight.w700,
+                        color: ColorPalette.darkGrey
+                    ),
+                  ),
+                ),
+                SizedBox(width: 12,),
+                Icon(
+                  CustomIcons.circular_arrow_right,
+                  color: ColorPalette.sun,
+                  size: size.height * 0.018,
+                )
+              ],
+            )
+
+             */
+          ],
+        ),
+      ),
+    );
+  }
+
+  _changeLanguage(String value){
+    String shortLan = '';
+    switch(value){
+      case 'English': {
+        shortLan = 'en';
+      }
+      break;
+      case 'Turkish': {
+        shortLan = 'tr';
+      }
+      break;
+    }
+
+    setState(() {
+      _selectedLanguage = value;
+    });
+    appLanguage.changeLanguage(Locale(shortLan));
+  }
 
 
+  //Get the selected language
+  String _getSelectedLanguage(){
+    if(appLanguage.appLocal == Locale('tr'))
+      return 'Turkish';
+    if(appLanguage.appLocal == Locale('en'))
+      return 'English';
+    return 'Unknown';
+  }
 }
