@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jetex_app/ui/screens/auth/register_email_screen.dart';
 import 'package:jetex_app/ui/screens/auth/register_screen.dart';
+import 'package:jetex_app/utils/app_localization.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'login_screen.dart';
@@ -98,7 +99,7 @@ class WelcomeScreen extends StatelessWidget {
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> RegisterEmailScreen()));
               },
               child: Text(
-                  'Register',
+                AppLocalizations.of(context).translate('register'),
                 style: TextStyle(
                   color: ColorPalette.darkPurple,
                   fontFamily: 'HelveticaNeue',
