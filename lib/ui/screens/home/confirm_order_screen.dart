@@ -228,6 +228,7 @@ class ConfirmOrderScreen extends StatelessWidget {
                       child: SunButton(
                         onTap: (){
                           //Navigator.of(context).popUntil(ModalRoute.withName('/'));
+                          popUntilRoot(context);
                         },
                         title: 'Confirm',
                       )
@@ -240,5 +241,11 @@ class ConfirmOrderScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+  void popUntilRoot(BuildContext context) {
+    if (Navigator.of(context).canPop()) {
+      Navigator.of(context).pop();
+      popUntilRoot(context);
+    }
   }
 }

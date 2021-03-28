@@ -24,7 +24,7 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
   final NewOrder order;
 
 
-  int selectedCardIndex = 1;
+  int selectedCardIndex = -10;
 
   List<CreditCard> creditCards = [
     CreditCard(
@@ -240,6 +240,9 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
                         onTap: (){
 
                           if(selectedCardIndex < -1){
+                            final snackBar = SnackBar(content: Text('Please select your payment method'));
+                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
                             return;
                           }
 
