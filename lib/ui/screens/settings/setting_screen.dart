@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jetex_app/ui/screens/settings/payment_methods_screen.dart';
+import 'package:jetex_app/ui/screens/settings/profile_screen.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/app_language.dart';
 import 'package:jetex_app/utils/app_localization.dart';
@@ -101,7 +102,12 @@ class _SettingScreenState extends State<SettingScreen> {
         ),
         SizedBox(height: size.height * 0.008,),
         FlatButton(
-          onPressed: (){},
+          onPressed: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfileScreen()),
+            );
+          },
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100.0),
               side: BorderSide(
@@ -217,31 +223,6 @@ class _SettingScreenState extends State<SettingScreen> {
                 );
               }).toList(),
             ),
-            /*
-            Row(
-              children: [
-                Opacity(
-                  opacity: 0.7,
-                  child: Text(
-                    _selectedLanguage,
-                    style: TextStyle(
-                        fontSize: size.height * 0.015,
-                        fontFamily: 'HelveticaNeue',
-                        fontWeight: FontWeight.w700,
-                        color: ColorPalette.darkGrey
-                    ),
-                  ),
-                ),
-                SizedBox(width: 12,),
-                Icon(
-                  CustomIcons.circular_arrow_right,
-                  color: ColorPalette.sun,
-                  size: size.height * 0.018,
-                )
-              ],
-            )
-
-             */
           ],
         ),
       ),
