@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jetex_app/ui/screens/delivery/request_delivery_screen.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 
@@ -28,7 +29,7 @@ class DeliveryScreen extends StatelessWidget {
               SizedBox(height: _size.height * 0.01,),
               Expanded(
                 child: Container(
-                  child: _deliveryView(_size),
+                  child: _deliveryView(_size, context),
                 ),
               )
             ],
@@ -37,7 +38,7 @@ class DeliveryScreen extends StatelessWidget {
     );
   }
 
-  Widget _deliveryView(Size size){
+  Widget _deliveryView(Size size, BuildContext context){
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
@@ -45,7 +46,12 @@ class DeliveryScreen extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: InkWell(
-            onTap: (){},
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => RequestDeliveryScreen()),
+              );
+            },
             borderRadius: BorderRadius.circular(22),
             focusColor: Colors.red,
             splashColor: Colors.grey,
