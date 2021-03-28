@@ -37,6 +37,9 @@ dependencies:
   flutter_circular_chart: ^0.1.0
   dotted_border: ^1.0.7
   expansion_card: ^0.1.0
+  google_maps_flutter: ^2.0.1
+  geolocator: ^7.0.1
+  geocoder: ^0.2.1
 
 dev_dependencies:
   flutter_test:

@@ -200,28 +200,30 @@ class _SettingScreenState extends State<SettingScreen> {
                   color: ColorPalette.darkPurple
               ),
             ),
-            DropdownButton<String>(
-              value: _selectedLanguage,
-              style:  TextStyle(
-                  fontSize: size.height * 0.015,
-                  fontFamily: 'HelveticaNeue',
-                  fontWeight: FontWeight.w700,
-                  color: ColorPalette.darkGrey
+            DropdownButtonHideUnderline(
+              child: DropdownButton<String>(
+                value: _selectedLanguage,
+                style:  TextStyle(
+                    fontSize: size.height * 0.015,
+                    fontFamily: 'HelveticaNeue',
+                    fontWeight: FontWeight.w700,
+                    color: ColorPalette.darkGrey,
+                ),
+                icon: Icon(
+                  CustomIcons.circular_arrow_right,
+                  color: ColorPalette.sun,
+                  size: size.height * 0.018,
+                ),
+                onChanged: (value){
+                  _changeLanguage(value);
+                },
+                items: languages.map<DropdownMenuItem<String>>((String value){
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
               ),
-              icon: Icon(
-                CustomIcons.circular_arrow_right,
-                color: ColorPalette.sun,
-                size: size.height * 0.018,
-              ),
-              onChanged: (value){
-                _changeLanguage(value);
-              },
-              items: languages.map<DropdownMenuItem<String>>((String value){
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
             ),
           ],
         ),
