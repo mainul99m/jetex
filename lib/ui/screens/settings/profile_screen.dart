@@ -9,6 +9,17 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _idController = TextEditingController();
+  TextEditingController _finController = TextEditingController();
+  TextEditingController _genderController = TextEditingController();
+  TextEditingController _phoneController = TextEditingController();
+  TextEditingController _dobController = TextEditingController();
+  TextEditingController _adressController = TextEditingController();
+
+
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -19,7 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             _appBar(size),
             Expanded(
-              child: _profileView()
+              child: _profileView(size)
             )
           ],
         ),
@@ -45,29 +56,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget _profileView(){
+  Widget _profileView(Size size){
 
-    EdgeInsetsGeometry padding = EdgeInsets.symmetric(horizontal: 30, vertical: 10);
+    EdgeInsetsGeometry padding = EdgeInsets.symmetric(horizontal: 30, vertical: size.height * 0.0145);
 
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
           child: CircleAvatar(
-            //backgroundImage: ,
-            radius: 50,
+            backgroundImage: NetworkImage('https://picsum.photos/200/300'),
+            radius: size.height * 0.06,
           ),
         ),
         //name
-        SliverToBoxAdapter(
-          child: Text(
-            'Jamil ALizada',
-            style: TextStyle(
-                fontFamily: 'HelveticaNeue',
-                fontWeight: FontWeight.w500,
-                fontSize: 20,
-                color: ColorPalette.darkGrey
+        SliverPadding(
+          padding: EdgeInsets.only(
+            top: size.height * 0.012,
+            bottom: size.height * 0.005
+          ),
+          sliver: SliverToBoxAdapter(
+            child: Text(
+              'Jamil ALizada',
+              style: TextStyle(
+                  fontFamily: 'HelveticaNeue',
+                  fontWeight: FontWeight.w500,
+                  fontSize: size.height * 0.021,
+                  color: ColorPalette.darkGrey
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
           ),
         ),
 
@@ -78,7 +95,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             style: TextStyle(
                 fontFamily: 'HelveticaNeue',
                 fontWeight: FontWeight.w400,
-                fontSize: 16,
+                fontSize: size.height * 0.017,
                 color: Colors.grey[700]
             ),
             textAlign: TextAlign.center,
@@ -86,7 +103,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
 
         SliverToBoxAdapter(
-          child: SizedBox(height: 30,),
+          child: SizedBox(height: size.height * 0.05,),
         ),
 
         //Full Name
@@ -97,6 +114,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               title: 'Full Name',
               isAuth: false,
               keyboardType: TextInputType.name,
+              controller: _nameController,
             ),
           ),
         ),
@@ -108,6 +126,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: CustomTextField(
               title: 'ID Number',
               isAuth: false,
+              controller: _idController,
             ),
           ),
         ),
@@ -119,6 +138,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: CustomTextField(
               title: 'Fin',
               isAuth: false,
+              controller: _finController,
             ),
           ),
         ),
@@ -130,6 +150,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: CustomTextField(
               title: 'Gender',
               isAuth: false,
+              controller: _genderController,
             ),
           ),
         ),
@@ -142,6 +163,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               title: 'Phone',
               isAuth: false,
               keyboardType: TextInputType.phone,
+              controller: _phoneController,
             ),
           ),
         ),
@@ -154,6 +176,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               title: 'Date of Birth',
               isAuth: false,
               keyboardType: TextInputType.datetime,
+              controller: _dobController,
             ),
           ),
         ),
@@ -166,6 +189,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               title: 'Address',
               isAuth: false,
               keyboardType: TextInputType.streetAddress,
+              controller: _adressController,
             ),
           ),
         ),
@@ -177,7 +201,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           sliver: SliverToBoxAdapter(
             child: SunButton(
               title: 'Save Changes',
-              onTap: (){},
+              onTap: (){
+                Navigator.of(context).pop();
+              },
             )
           ),
         ),
