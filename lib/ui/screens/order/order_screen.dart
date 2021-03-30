@@ -145,16 +145,6 @@ class _OrderScreenState extends State<OrderScreen> {
             return SliverToBoxAdapter(child: Center(child: CircularProgressIndicator()));
           },
         ),
-
-        // SliverList(
-        //   delegate: SliverChildListDelegate(
-        //   List.generate(10, (index) => PaymentHistorySnap(
-        //     amount: 20.5,
-        //     date: '16.03.2021',
-        //     from: 'Sifariş Balansi a',
-        //     to: 'Negd a',
-        //   )).toList())
-        // )
       ],
     );
   }
