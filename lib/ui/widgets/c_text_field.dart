@@ -9,6 +9,7 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final TextInputType keyboardType;
   final bool obscureText;
+  final bool readOnly;
 
   const CustomTextField({Key key,
     @required
@@ -17,6 +18,7 @@ class CustomTextField extends StatelessWidget {
     this.controller,
     this.keyboardType,
     this.obscureText,
+    this.readOnly = false
   }) : super(key: key);
 
   @override
@@ -37,6 +39,8 @@ class CustomTextField extends StatelessWidget {
         ),
         TextField(
           controller: controller,
+          keyboardAppearance: Brightness.light,
+          readOnly: readOnly,
           obscureText: obscureText==null ? false : obscureText,
           keyboardType: keyboardType,
           cursorColor: isAuth ? Colors.white : ColorPalette.darkPurple,
