@@ -1,7 +1,9 @@
 import 'package:expansion_card/expansion_card.dart';
 import 'package:flutter/material.dart';
+import 'package:jetex_app/models/payment_history.dart';
 import 'package:jetex_app/ui/screens/order/new_order_screen.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
+import 'package:jetex_app/utils/api.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jetex_app/utils/custom_icons_icons.dart';
@@ -125,15 +127,34 @@ class _OrderScreenState extends State<OrderScreen> {
         SliverToBoxAdapter(
           child: SizedBox(height: 20,),
         ),
-        SliverList(
-          delegate: SliverChildListDelegate(
-          List.generate(10, (index) => PaymentHistorySnap(
-            amount: 20.5,
-            date: '16.03.2021',
-            from: 'Sifariş Balansi a',
-            to: 'Negd a',
-          )).toList())
-          )
+
+        FutureBuilder<List<PaymentHistory>>(
+          future: _getData(),
+          builder: (context, snapshot){
+
+            if(snapshot.hasData){
+              return SliverList(
+                  delegate: SliverChildListDelegate(
+                      List.generate(snapshot.data.length, (index) => PaymentHistorySnap(
+                        history: snapshot.data[index],
+                      )).toList())
+              );
+            }
+
+
+            return SliverToBoxAdapter(child: Center(child: CircularProgressIndicator()));
+          },
+        ),
+
+        // SliverList(
+        //   delegate: SliverChildListDelegate(
+        //   List.generate(10, (index) => PaymentHistorySnap(
+        //     amount: 20.5,
+        //     date: '16.03.2021',
+        //     from: 'Sifariş Balansi a',
+        //     to: 'Negd a',
+        //   )).toList())
+        // )
       ],
     );
   }
@@ -145,5 +166,15 @@ class _OrderScreenState extends State<OrderScreen> {
     _pageController.animateToPage(id,
         duration: Duration(milliseconds: 500), curve: Curves.easeOutCubic);
   }
+
+
+  Future<List<PaymentHistory>> _getData() async{
+    await Future<dynamic>.delayed(const Duration(milliseconds: 100));
+
+    var list = API.getPaymentHistory();
+    return list;
+  }
+
+
 
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jetex_app/models/payment_history.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 import 'package:jetex_app/utils/custom_icons_icons.dart';
@@ -6,17 +7,11 @@ import 'package:jetex_app/utils/custom_icons_icons.dart';
 
 class PaymentHistorySnap extends StatelessWidget {
 
-  final String from;
-  final String to;
-  final double amount;
-  final String date;
+  final PaymentHistory history;
 
   const PaymentHistorySnap({
     Key key,
-    this.from,
-    this.to,
-    this.amount,
-    this.date
+    this.history
   }) : super(key: key);
 
 
@@ -38,7 +33,7 @@ class PaymentHistorySnap extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  from,
+                  history.paymentFrom,
                   style: TextStyle(
                       color: ColorPalette.darkGrey,
                       fontFamily: 'HelveticaNeue',
@@ -54,7 +49,7 @@ class PaymentHistorySnap extends StatelessWidget {
                 ),
                 SizedBox(width: 12,),
                 Text(
-                  to,
+                  history.paymentTo,
                   style: TextStyle(
                       color: ColorPalette.darkGrey,
                       fontFamily: 'HelveticaNeue',
@@ -71,11 +66,11 @@ class PaymentHistorySnap extends StatelessWidget {
               textBaseline: TextBaseline.alphabetic,
               children: [
                 CurrencyText(
-                  amount: amount,
+                  amount: history.amount,
                   isSmall: true,
                 ),
                 Text(
-                  date,
+                  history.date,
                   style: TextStyle(
                       color: ColorPalette.darkGrey,
                       fontFamily: 'HelveticaNeue',
