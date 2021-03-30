@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:jetex_app/models/new_order.dart';
+import 'package:jetex_app/models/create_new_order.dart';
 import 'package:jetex_app/ui/screens/home/select_payment_method_screen.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/color_palette.dart';
@@ -217,7 +217,7 @@ class _CreateNewOrderScreenState extends State<CreateNewOrderScreen> {
                       child: SunButton(
                         onTap: (){
 
-                          final order = NewOrder(
+                          final order = CreateNewOrder(
                             country: countryController.text,
                             link: linkController.text,
                             quantity: quantityController.text == '' ? 0 : int.parse(quantityController.text),

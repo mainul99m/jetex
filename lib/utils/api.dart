@@ -1,5 +1,6 @@
 import 'package:jetex_app/models/contact_model.dart';
 import 'package:jetex_app/models/credit_card_model.dart';
+import 'package:jetex_app/models/order_model.dart';
 import 'package:jetex_app/models/payment_history.dart';
 
 class API {
@@ -53,11 +54,100 @@ class API {
         }
       ];
 
-      for(var elements in response){
-        PaymentHistory h = PaymentHistory.fromJSON(elements);
+      for(var element in response){
+        PaymentHistory h = PaymentHistory.fromJSON(element);
         history.add(h);
       }
       return history;
+   }
+
+
+   ///Get new order history
+   ///is called from the order view
+   ///new order
+   static List<Order> getNewOrderHistory(){
+     var response = [
+       {
+         "id" : "JTX-123232",
+         "country": "Turkey",
+         "date": "20.02.2021",
+         "timeRange": "16:00 - 20:00",
+         "quantity" : 2,
+         "price" : 20.12,
+         "deliveryFee" : 4.44,
+         "notes": "Some random notes",
+         "company": "FLO",
+         "status" : "Paid"
+       },
+       {
+         "id" : "JTX-1214452",
+         "country": "Turkey",
+         "date": "20.02.2021",
+         "timeRange": "16:00 - 20:00",
+         "quantity" : 2,
+         "price" : 20.12,
+         "deliveryFee" : 4.44,
+         "notes": "Some random notes",
+         "company": "FLO",
+         "status" : "Paid"
+       },
+       {
+         "id" : "JTX-125686",
+         "country": "Turkey",
+         "date": "20.02.2021",
+         "timeRange": "16:00 - 20:00",
+         "quantity" : 2,
+         "price" : 20.12,
+         "deliveryFee" : 4.44,
+         "notes": "Some random notes",
+         "company": "FLO",
+         "status" : "Paid"
+       },
+       {
+         "id" : "JTX-122344",
+         "country": "Turkey",
+         "date": "20.02.2021",
+         "timeRange": "16:00 - 20:00",
+         "quantity" : 2,
+         "price" : 20.12,
+         "deliveryFee" : 4.44,
+         "notes": "Some random notes",
+         "company": "FLO",
+         "status" : "Paid"
+       },
+       {
+         "id" : "JTX-112343",
+         "country": "Turkey",
+         "date": "20.02.2021",
+         "timeRange": "16:00 - 20:00",
+         "quantity" : 2,
+         "price" : 20.12,
+         "deliveryFee" : 4.44,
+         "notes": "Some random notes",
+         "company": "FLO",
+         "status" : "Paid"
+       },
+       {
+         "id" : "JTX-166854",
+         "country": "Turkey",
+         "date": "20.02.2021",
+         "timeRange": "16:00 - 20:00",
+         "quantity" : 2,
+         "price" : 20.12,
+         "deliveryFee" : 4.44,
+         "notes": "Some random notes",
+         "company": "FLO",
+         "status" : "Paid"
+       }
+     ];
+
+     List<Order> orders = [];
+     for(var element in response){
+       Order o = Order.fromJSON(element);
+       orders.add(o);
+     }
+
+     return orders;
    }
 
 }

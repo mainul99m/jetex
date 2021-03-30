@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:jetex_app/models/new_order.dart';
+import 'package:jetex_app/models/create_new_order.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 
 class ConfirmOrderScreen extends StatelessWidget {
 
-  final NewOrder order;
+  final CreateNewOrder order;
 
   const ConfirmOrderScreen({
     Key key,

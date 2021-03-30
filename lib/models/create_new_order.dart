@@ -1,6 +1,6 @@
 import 'package:jetex_app/models/credit_card_model.dart';
 
-class NewOrder {
+class CreateNewOrder {
   String country;
   String link;
   int quantity;
@@ -9,7 +9,7 @@ class NewOrder {
   String additionalNotes;
   CreditCard creditCard;
 
-  NewOrder({
+  CreateNewOrder({
     this.country,
     this.link,
     this.quantity,
@@ -19,8 +19,8 @@ class NewOrder {
     this.creditCard
   });
 
-  factory NewOrder.fromJSON(final json){
-    return NewOrder(
+  factory CreateNewOrder.fromJSON(final json){
+    return CreateNewOrder(
       country: json["country"],
       link: json["link"],
       quantity: json["quantity"],

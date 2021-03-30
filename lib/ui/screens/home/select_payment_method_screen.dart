@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jetex_app/models/credit_card_model.dart';
-import 'package:jetex_app/models/new_order.dart';
+import 'package:jetex_app/models/create_new_order.dart';
 import 'package:jetex_app/ui/screens/home/confirm_order_screen.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 
 class SelectPaymentMethodScreen extends StatefulWidget {
 
-  final NewOrder order;
+  final CreateNewOrder order;
 
   SelectPaymentMethodScreen({
     Key key,
@@ -21,7 +21,7 @@ class SelectPaymentMethodScreen extends StatefulWidget {
 
 class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
 
-  final NewOrder order;
+  final CreateNewOrder order;
 
 
   int selectedCardIndex = -10;
@@ -246,7 +246,7 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
                             return;
                           }
 
-                          var _order = NewOrder(
+                          var _order = CreateNewOrder(
                             country: order.country,
                             link:  order.link,
                             quantity: order.quantity,
