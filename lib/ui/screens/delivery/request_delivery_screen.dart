@@ -29,6 +29,22 @@ class _RequestDeliveryScreenState extends State<RequestDeliveryScreen> {
     zoom: 14.4746,
   );
 
+  TextEditingController _trackingNumberController = TextEditingController();
+  TextEditingController _addressController = TextEditingController();
+  TextEditingController _dateTimeNumberController = TextEditingController();
+  TextEditingController _additionalNotesController = TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _trackingNumberController.dispose();
+    _addressController.dispose();
+    _dateTimeNumberController.dispose();
+    _additionalNotesController.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
@@ -151,10 +167,10 @@ class _RequestDeliveryScreenState extends State<RequestDeliveryScreen> {
                   child: CustomTextField(
                     title: 'Tracking Number',
                     isAuth: false,
+                    controller: _trackingNumberController,
                   ),
                 ),
               ),
-              //Todo
 
               SliverPadding(
                 padding: padding,
@@ -165,6 +181,8 @@ class _RequestDeliveryScreenState extends State<RequestDeliveryScreen> {
                         title: 'Address',
                         isAuth: false,
                         readOnly: true,
+                        keyboardType: TextInputType.streetAddress,
+                        controller: _addressController,
                       ),
                       InkWell(
                         onTap: (){
@@ -190,6 +208,7 @@ class _RequestDeliveryScreenState extends State<RequestDeliveryScreen> {
                     title: 'Date and Time Range',
                     isAuth: false,
                     keyboardType: TextInputType.datetime,
+                    controller: _dateTimeNumberController,
                   ),
                 ),
               ),
@@ -201,8 +220,14 @@ class _RequestDeliveryScreenState extends State<RequestDeliveryScreen> {
                   child: CustomTextField(
                     title: 'Additional Notes',
                     isAuth: false,
+                    controller: _additionalNotesController,
                   ),
                 ),
+              ),
+
+
+              SliverToBoxAdapter(
+                child: SizedBox(height: size.height * 0.065,),
               ),
 
               SliverPadding(
@@ -230,6 +255,7 @@ class _RequestDeliveryScreenState extends State<RequestDeliveryScreen> {
                   ),
                 ),
               ),
+
 
               SliverPadding(
                 padding: padding,
@@ -327,9 +353,7 @@ class _RequestDeliveryScreenState extends State<RequestDeliveryScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: SunButton(
             title: 'Confirm',
-            onTap: (){
-
-            },
+            onTap: _onConfirmTap,
           ),
         )
 
@@ -337,6 +361,12 @@ class _RequestDeliveryScreenState extends State<RequestDeliveryScreen> {
     );
   }
 
+  void _onConfirmTap(){
+    _addressController.text = _pickedAddress;
+    setState(() {
+      _isExpanded = true;
+    });
+  }
 
   void _onCameraMove(CameraPosition position) {
     _lastMapPosition = position.target;
