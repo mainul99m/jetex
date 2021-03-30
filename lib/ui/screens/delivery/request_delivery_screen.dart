@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:jetex_app/models/request_model.dart';
+import 'package:jetex_app/ui/screens/delivery/request_delivery_payment_method.dart';
 import 'package:jetex_app/ui/widgets/back_button.dart';
 import 'package:jetex_app/ui/widgets/bottom_sun_button.dart';
 import 'package:jetex_app/ui/widgets/c_text_field.dart';
@@ -118,7 +120,7 @@ class _RequestDeliveryScreenState extends State<RequestDeliveryScreen> {
                     )
                   ]
                 ),
-                child: _isExpanded ? _deliveryInput(_size) : _confirmAdress(),
+                child: _isExpanded ? _deliveryInput(_size) : _confirmAddress(),
               ),
             )
           ],
@@ -262,9 +264,7 @@ class _RequestDeliveryScreenState extends State<RequestDeliveryScreen> {
                 sliver: SliverToBoxAdapter(
                   child: SunButton(
                     title: 'Proceed',
-                    onTap: (){
-
-                    },
+                    onTap: _onProceedtap,
                   ),
                 ),
               )
@@ -276,7 +276,7 @@ class _RequestDeliveryScreenState extends State<RequestDeliveryScreen> {
     );
   }
 
-  Widget _confirmAdress(){
+  Widget _confirmAddress(){
     return Column(
       // mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -366,6 +366,21 @@ class _RequestDeliveryScreenState extends State<RequestDeliveryScreen> {
     setState(() {
       _isExpanded = true;
     });
+  }
+
+  void _onProceedtap(){
+    RequestOrder order = RequestOrder(
+      trackingNumber: _trackingNumberController.text,
+      date: _dateTimeNumberController.text,
+      additionalNotes: _additionalNotesController.text,
+      address: _addressController.text,
+      timeRange: '12:00 - 16:00',
+      deliveryFee: 17.32
+    );
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => RequestDeliveryPaymentMethodScreen(order: order,)),
+    );
   }
 
   void _onCameraMove(CameraPosition position) {

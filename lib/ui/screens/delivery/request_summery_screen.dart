@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:jetex_app/models/new_order.dart';
+import 'package:jetex_app/models/request_model.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 
-class ConfirmOrderScreen extends StatelessWidget {
+class RequestSummeryScreen extends StatelessWidget {
 
-  final NewOrder order;
+  final RequestOrder order;
 
-  const ConfirmOrderScreen({
+  const RequestSummeryScreen({
     Key key,
     this.order
   }) : super(key: key);
@@ -27,23 +27,15 @@ class ConfirmOrderScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: CustomAppbar(
-                leading: Row(
-                  children: [
-                    SvgPicture.asset(
-                        'assets/ui/icons/order_box.svg'
-                    ),
-                    SizedBox(width: 10,),
-                    Text(
-                      'New Order',
-                      style: TextStyle(
-                          fontFamily: 'HelveticaNeue',
-                          fontWeight: FontWeight.w700,
-                          fontSize: _size.height * .022,
-                          letterSpacing: 0,
-                          color: ColorPalette.darkPurple
-                      ),
-                    ),
-                  ],
+                leading: Text(
+                  'New Request',
+                  style: TextStyle(
+                      fontFamily: 'HelveticaNeue',
+                      fontWeight: FontWeight.w700,
+                      fontSize: _size.height * .022,
+                      letterSpacing: 0,
+                      color: ColorPalette.darkPurple
+                  ),
                 ),
               ),
             ),
@@ -92,55 +84,55 @@ class ConfirmOrderScreen extends StatelessWidget {
                   child: Text(
                     'Order Summery',
                     style: TextStyle(
-                      fontFamily: 'HelveticaNeue',
-                      fontWeight: FontWeight.w700,
-                      fontSize: _size.height * 0.022,
-                      color: ColorPalette.darkPurple
+                        fontFamily: 'HelveticaNeue',
+                        fontWeight: FontWeight.w700,
+                        fontSize: _size.height * 0.022,
+                        color: ColorPalette.darkPurple
                     ),
                     textAlign: TextAlign.center,
                   ),
                 ),
 
-                //country
+                //Tracking Number
                 SliverPadding(
                   padding: _padding,
                   sliver: SliverToBoxAdapter(
                     child: SummeryRow(
-                      leading: 'Country',
-                      trailing: order.country,
+                      leading: 'Tracking Number',
+                      trailing: order.trackingNumber,
                     ),
                   ),
                 ),
 
-                //Link
+                //Address
                 SliverPadding(
                   padding: _padding,
                   sliver: SliverToBoxAdapter(
                     child: SummeryRow(
-                      leading: 'Link',
-                      trailing: order.link,
+                      leading: 'Address',
+                      trailing: order.address,
                     ),
                   ),
                 ),
 
-                //Quantity
+                //date
                 SliverPadding(
                   padding: _padding,
                   sliver: SliverToBoxAdapter(
                     child: SummeryRow(
-                      leading: 'Quantity',
-                      trailing: order.quantity.toString(),
+                      leading: 'Date',
+                      trailing: order.date,
                     ),
                   ),
                 ),
 
-                //Price
+                //Time Range
                 SliverPadding(
                   padding: _padding,
                   sliver: SliverToBoxAdapter(
                     child: SummeryRow(
-                      leading: 'Price(TL)',
-                      trailing: order.price.toStringAsFixed(2),
+                      leading: 'Time Range',
+                      trailing: order.timeRange,
                     ),
                   ),
                 ),
@@ -150,8 +142,8 @@ class ConfirmOrderScreen extends StatelessWidget {
                   padding: _padding,
                   sliver: SliverToBoxAdapter(
                     child: SummeryRow(
-                      leading: 'Delivery Fee(TL)',
-                      trailing: order.deliveryFee.toStringAsFixed(2),
+                      leading: 'Delivery Fee (AZN)',
+                      trailing: order.deliveryFee.toString(),
                     ),
                   ),
                 ),
@@ -186,7 +178,7 @@ class ConfirmOrderScreen extends StatelessWidget {
                   sliver: SliverToBoxAdapter(
                     child: SummeryRow(
                       leading: 'Total Order (TL)',
-                      trailing: (order.price * order.quantity + order.deliveryFee).toStringAsFixed(2),
+                      trailing: order.deliveryFee.toString()
                     ),
                   ),
                 ),
