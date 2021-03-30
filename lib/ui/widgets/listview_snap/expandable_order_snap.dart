@@ -3,12 +3,22 @@ import 'dart:math';
 import 'package:expansion_card/expansion_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:jetex_app/models/order_model.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 import 'package:jetex_app/utils/custom_icons_icons.dart';
 
 
 class ExpandableOrderSnap extends StatefulWidget {
+
+  final Order order;
+
+  const ExpandableOrderSnap({
+    Key key,
+    this.order
+  }) : super(key: key);
+
+
   @override
   _ExpandableOrderSnapState createState() => _ExpandableOrderSnapState();
 }
@@ -47,11 +57,12 @@ class _ExpandableOrderSnapState extends State<ExpandableOrderSnap> {
                 'assets/ui/logos/flo_logo.svg'
             ),
             trailing: Container(
-              width: 120,
+              width: 200,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    'JTX-900900',
+                    widget.order.trackingId,
                     style: TextStyle(
                       fontFamily: 'HelveticaNeue',
                       fontWeight: FontWeight.w700,
@@ -94,7 +105,7 @@ class _ExpandableOrderSnapState extends State<ExpandableOrderSnap> {
                       style: _headerTextStyle
                     ),
                     Text(
-                      '20-Jan-2021',
+                      widget.order.date,
                       style: _dataTextStyle,
                     )
                   ],
@@ -113,7 +124,7 @@ class _ExpandableOrderSnapState extends State<ExpandableOrderSnap> {
                     Row(
                       children: [
                         Text(
-                          'Turkey',
+                          widget.order.country,
                           style: _dataTextStyle
                         ),
                         SizedBox(width: 10,),
@@ -137,7 +148,7 @@ class _ExpandableOrderSnapState extends State<ExpandableOrderSnap> {
                         style: _headerTextStyle
                     ),
                     Text(
-                      '64.79 TRY',
+                      widget.order.price.toString() + ' TRY',
                       style: _dataTextStyle,
                     )
                   ],
@@ -154,7 +165,7 @@ class _ExpandableOrderSnapState extends State<ExpandableOrderSnap> {
                         style: _headerTextStyle
                     ),
                     Text(
-                      '\$4.44/₼7.55',
+                      '\$' + widget.order.deliveryFee.toString() + '/₼'+ (widget.order.deliveryFee * 1.75).toStringAsFixed(2),
                       style: TextStyle(
                           fontFamily: 'HelveticaNeue',
                           fontSize: 14,
@@ -176,7 +187,7 @@ class _ExpandableOrderSnapState extends State<ExpandableOrderSnap> {
                         style: _headerTextStyle
                     ),
                     Text(
-                      '1 pcs.',
+                      widget.order.quantity.toString() + ' pcs.',
                       style: _dataTextStyle,
                     )
                   ],

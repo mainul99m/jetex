@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:jetex_app/models/order_model.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
+import 'package:jetex_app/utils/api.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 
 class NewOrdersScreen extends StatelessWidget {
@@ -22,22 +24,55 @@ class NewOrdersScreen extends StatelessWidget {
             ),
             SizedBox(height: _size.height * 0.01,),
             Expanded(
-                child: _newOrderView()
+                child: _newOrderView(context)
             )
           ],
         )
     );
   }
-  Widget _newOrderView(){
+  Widget _newOrderView(BuildContext context){
     return CustomScrollView(
       slivers: [
-        SliverList(
-          delegate: SliverChildListDelegate(
-              List.generate(4, (index) => ExpandableOrderSnap())
-          ),
+        FutureBuilder<List<Order>>(
+          future: _getData(),
+          builder: (context, snapshot){
+            // if(snapshot.hasData){
+            //   print("Has data");
+            //   print(snapshot.data.length);
+            //   return SliverList(
+            //     delegate: SliverChildListDelegate(
+            //         List.generate(snapshot.data.length, (index) => ExpandableOrderSnap()).toList()
+            //     ),
+            //   );
+            // }
+            if(snapshot.hasData){
+              return SliverList(
+                  delegate: SliverChildListDelegate(
+                      List.generate(snapshot.data.length, (index) => ExpandableOrderSnap(
+                        order: snapshot.data[index],
+                      )).toList())
+              );
+            }
+
+            return SliverList(
+                delegate: SliverChildListDelegate(
+                    List.generate(1, (index) => Center(child: CircularProgressIndicator())).toList())
+            );
+          },
         ),
+        // SliverList(
+        //   delegate: SliverChildListDelegate(
+        //       List.generate(4, (index) => ExpandableOrderSnap())
+        //   ),
+        // ),
         SliverToBoxAdapter(child: SizedBox(height: 10,))
       ],
     );
+  }
+
+  Future<List<Order>> _getData()async{
+    await Future<dynamic>.delayed(const Duration(milliseconds: 100));
+    List<Order> orders = API.getNewOrderHistory();
+    return orders;
   }
 }

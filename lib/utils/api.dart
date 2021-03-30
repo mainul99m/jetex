@@ -77,7 +77,7 @@ class API {
          "deliveryFee" : 4.44,
          "notes": "Some random notes",
          "company": "FLO",
-         "status" : "Paid"
+         "status" : 0
        },
        {
          "id" : "JTX-1214452",
@@ -89,7 +89,7 @@ class API {
          "deliveryFee" : 4.44,
          "notes": "Some random notes",
          "company": "FLO",
-         "status" : "Paid"
+         "status" : 1
        },
        {
          "id" : "JTX-125686",
@@ -101,7 +101,7 @@ class API {
          "deliveryFee" : 4.44,
          "notes": "Some random notes",
          "company": "FLO",
-         "status" : "Paid"
+         "status" : 0
        },
        {
          "id" : "JTX-122344",
@@ -113,7 +113,7 @@ class API {
          "deliveryFee" : 4.44,
          "notes": "Some random notes",
          "company": "FLO",
-         "status" : "Paid"
+         "status" : 1
        },
        {
          "id" : "JTX-112343",
@@ -125,7 +125,7 @@ class API {
          "deliveryFee" : 4.44,
          "notes": "Some random notes",
          "company": "FLO",
-         "status" : "Paid"
+         "status" : 1
        },
        {
          "id" : "JTX-166854",
@@ -137,7 +137,7 @@ class API {
          "deliveryFee" : 4.44,
          "notes": "Some random notes",
          "company": "FLO",
-         "status" : "Paid"
+         "status" : 1
        }
      ];
 
