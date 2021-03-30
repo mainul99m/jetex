@@ -1,6 +1,6 @@
 class Contact{
   final String name;
-  final String adressLine1;
+  final String addressLine;
   final String city;
   final String province;
   final String postCode;
@@ -9,13 +9,25 @@ class Contact{
 
   Contact({
     this.name,
-    this.adressLine1,
+    this.addressLine,
     this.city,
     this.province,
     this.postCode,
     this.mobile,
     this.phone
   });
+
+  factory Contact.fromJSON(final json){
+    return Contact(
+      name: json["name"],
+      addressLine: json["address"],
+      city: json["city"],
+      province: json["province"],
+      postCode: json["postcode"],
+      mobile: json["mobile"],
+      phone: json["phone"]
+    );
+  }
 
 
 }

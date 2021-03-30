@@ -8,7 +8,7 @@ class Order{
   double deliveryFee;
   String additionalNotes;
   String company;
-  OrderStatus orderStatus;
+  int orderStatus;
 
   Order({
     this.trackingId,
@@ -22,11 +22,29 @@ class Order{
     this.company,
     this.orderStatus,
   });
+
+  factory Order.fromJSON(final json){
+    return Order(
+      trackingId: json["id"],
+      country: json["country"],
+      date: json["date"],
+      timeRange: json["timeRange"],
+      quantity: json["quantity"],
+      price: json["price"],
+      deliveryFee: json["deliveryFee"],
+      additionalNotes: json["notes"],
+      company: json["company"],
+      orderStatus: json["status"]
+    );
+  }
 }
 
+/*
 enum OrderStatus{
   Unpaid,
   OutForDelivery,
   InWareHouse,
   Delivered
 }
+
+ */

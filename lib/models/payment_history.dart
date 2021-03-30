@@ -10,4 +10,13 @@ class PaymentHistory{
     this.amount,
     this.date
   });
+
+  factory PaymentHistory.fromJSON(final json){
+    return PaymentHistory(
+      paymentFrom: json["from"],
+      paymentTo: json["to"],
+      amount: json["amount"],
+      date: json["date"]
+    );
+  }
 }

@@ -18,4 +18,16 @@ class NewOrder {
     this.additionalNotes,
     this.creditCard
   });
+
+  factory NewOrder.fromJSON(final json){
+    return NewOrder(
+      country: json["country"],
+      link: json["link"],
+      quantity: json["quantity"],
+      price: json["price"],
+      deliveryFee: json["deliveryFee"],
+      additionalNotes: json["additionalNotes"],
+      creditCard: CreditCard.fromJSON(json["creditCard"])
+    );
+  }
 }

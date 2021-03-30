@@ -18,4 +18,17 @@ class User{
     this.dob,
     this.address
   });
+
+  factory User.fromJSON(final json){
+    return User(
+      name: json["name"],
+      id: json["id"],
+      profileImageURL: json["img_URL"],
+      fin: json["fin"],
+      gender: json["gender"],
+      address: json["address"],
+      phone: json["phone"],
+      dob: json["dob"]
+    );
+  }
 }
