@@ -77,6 +77,7 @@ class API {
          "deliveryFee" : 4.44,
          "notes": "Some random notes",
          "company": "FLO",
+         "weight": 1.72,
          "status" : 0
        },
        {
@@ -89,6 +90,7 @@ class API {
          "deliveryFee" : 4.44,
          "notes": "Some random notes",
          "company": "FLO",
+         "weight": 2.34,
          "status" : 1
        },
        {
@@ -101,6 +103,7 @@ class API {
          "deliveryFee" : 4.44,
          "notes": "Some random notes",
          "company": "FLO",
+         "weight": 1.72,
          "status" : 0
        },
        {
@@ -113,6 +116,7 @@ class API {
          "deliveryFee" : 4.44,
          "notes": "Some random notes",
          "company": "FLO",
+         "weight": 1.72,
          "status" : 1
        },
        {
@@ -124,7 +128,8 @@ class API {
          "price" : 20.12,
          "deliveryFee" : 4.44,
          "notes": "Some random notes",
-         "company": "FLO",
+         "company": "BOYNER",
+         "weight": 1.72,
          "status" : 1
        },
        {
@@ -137,6 +142,7 @@ class API {
          "deliveryFee" : 4.44,
          "notes": "Some random notes",
          "company": "FLO",
+         "weight": 1.72,
          "status" : 1
        }
      ];

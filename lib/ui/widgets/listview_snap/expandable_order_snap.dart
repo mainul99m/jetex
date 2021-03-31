@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:expansion_card/expansion_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -54,7 +53,7 @@ class _ExpandableOrderSnapState extends State<ExpandableOrderSnap> {
           color: Colors.white,
           child: ExpansionCard(
             leading: SvgPicture.asset(
-                'assets/ui/logos/flo_logo.svg'
+                _getLogoUrl(),
             ),
             trailing: Container(
               width: 200,
@@ -204,7 +203,7 @@ class _ExpandableOrderSnapState extends State<ExpandableOrderSnap> {
                         style: _headerTextStyle
                     ),
                     Text(
-                      '1.7kg',
+                      widget.order.weight.toStringAsFixed(2) + 'kg',
                       style: _dataTextStyle,
                     )
                   ],
@@ -261,5 +260,12 @@ class _ExpandableOrderSnapState extends State<ExpandableOrderSnap> {
         ),
       ),
     );
+  }
+
+  String _getLogoUrl(){
+    if(widget.order.company == "BOYNER")
+      return 'assets/ui/logos/boyner_logo.svg';
+
+    return 'assets/ui/logos/flo_logo.svg';
   }
 }

@@ -8,6 +8,7 @@ class Order{
   double deliveryFee;
   String additionalNotes;
   String company;
+  double weight;
   int orderStatus;
 
   Order({
@@ -20,6 +21,7 @@ class Order{
     this.deliveryFee,
     this.additionalNotes,
     this.company,
+    this.weight,
     this.orderStatus,
   });
 
@@ -34,6 +36,7 @@ class Order{
       deliveryFee: json["deliveryFee"],
       additionalNotes: json["notes"],
       company: json["company"],
+      weight: json["weight"],
       orderStatus: json["status"]
     );
   }

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="129.245" height="18" viewBox="0 0 129.245 18">
+  <g id="Checkout01" transform="translate(-30 -27.127)">
+    <g id="Page-1" transform="translate(30 27.127)">
+      <path id="Fill-1" d="M17.01,12.907c0,2.812-2.643,5.1-5.888,5.1H0V1H9.813C13.059,1,15.7,3.291,15.7,6.1a4.666,4.666,0,0,1-.942,2.79A4.9,4.9,0,0,1,17.01,12.907Zm-5.888,1.7a1.86,1.86,0,0,0,1.963-1.7,1.86,1.86,0,0,0-1.963-1.7H3.9v3.4ZM9.813,7.8a1.86,1.86,0,0,0,1.963-1.7A1.86,1.86,0,0,0,9.813,4.4H3.925V7.8Z" transform="translate(0 -0.01)" fill="#ee403d" fill-rule="evenodd"/>
+      <g id="Group-5" transform="translate(21.552 0)">
+        <path id="Fill-3" d="M9.622,18.127c-5.308,0-9.617-4.032-9.617-9s4.308-9,9.617-9,9.617,4.032,9.617,9-4.308,9-9.617,9m-5.77-9a5.6,5.6,0,0,0,5.77,5.4,5.6,5.6,0,0,0,5.77-5.4,5.6,5.6,0,0,0-5.77-5.4,5.6,5.6,0,0,0-5.77,5.4" transform="translate(-0.005 -0.127)" fill="#ee403d" fill-rule="evenodd"/>
+      </g>
+      <path id="Fill-6" d="M38,1h4.531l5.095,7.212L52.747,1h4.531L49.547,11.909v6.1h-3.84v-6.1Z" transform="translate(5.092 -0.01)" fill="#ee403d" fill-rule="evenodd"/>
+      <path id="Fill-8" d="M60,1h1.047l12.038,9.934V1H77.01V18.01H75.937L63.926,8.076V18.01H60Z" transform="translate(8.04 -0.01)" fill="#ee403d" fill-rule="evenodd"/>
+      <path id="Fill-10" d="M82,1H96.742V4.4H86.021V8.065h8.041v3.4H86.021v3.141H96.742v3.4H82Z" transform="translate(10.988 -0.01)" fill="#ee403d" fill-rule="evenodd"/>
+      <g id="Group-14" transform="translate(114.543 1.053)">
+        <path id="Fill-12" d="M14.71,16.961H10.157L6.825,12.452h-3v4.508H.008V.055H7C10.869.055,14,2.827,14,6.254a6.094,6.094,0,0,1-3.307,5.275ZM7,9.071a3.016,3.016,0,0,0,3.179-2.818A3.016,3.016,0,0,0,7,3.436H3.823V9.071Z" transform="translate(-0.008 -0.055)" fill="#ee403d" fill-rule="evenodd"/>
+      </g>
+    </g>
+  </g>
+</svg>
