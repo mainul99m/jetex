@@ -2,6 +2,8 @@ import 'package:jetex_app/models/contact_model.dart';
 import 'package:jetex_app/models/credit_card_model.dart';
 import 'package:jetex_app/models/order_model.dart';
 import 'package:jetex_app/models/payment_history.dart';
+import 'package:jetex_app/models/referral_model.dart';
+import 'package:jetex_app/models/transaction_model.dart';
 
 class API {
 
@@ -156,4 +158,53 @@ class API {
      return orders;
    }
 
+   ///Referral screen
+   ///referral transaction
+   static List<Transaction> getTransaction(){
+     var response = [
+       {
+         "email": "hello@jetex.com",
+         "amount": 23.2,
+         "date": "08.03.2021"
+       },
+       {
+         "email": "hello@jetex.com",
+         "amount": 112.25,
+         "date": "01.03.2021"
+       },
+       {
+         "email": "hello@jetex.com",
+         "amount": 113.2,
+         "date": "23.11.2020"
+       },
+       {
+         "email": "test@test.com",
+         "amount": 252.2,
+         "date": "23.08.2020"
+       },
+       {
+         "email": "hello@gamil.com",
+         "amount": -100.2,
+         "date": "23.02.2017"
+       }
+     ];
+
+     List<Transaction> transactions = [];
+
+     for(var element in response){
+       Transaction t = Transaction.fromJSON(element);
+       transactions.add(t);
+     }
+
+     return transactions;
+   }
+
+   static Referral getReferral(){
+     var response = {
+       "balance" : 23.2,
+       "link" : "jetex.az/ref=JTX-030696"
+     };
+
+     return Referral.fromJSON(response);
+   }
 }
