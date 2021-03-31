@@ -5,8 +5,42 @@ import 'package:jetex_app/ui/screens/home/select_payment_method_screen.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 
-class DeclareScreen extends StatelessWidget {
+class DeclareScreen extends StatefulWidget {
 
+  @override
+  _DeclareScreenState createState() => _DeclareScreenState();
+}
+
+class _DeclareScreenState extends State<DeclareScreen> {
+  
+  //controllers
+  final countryController = TextEditingController();
+  final trackingNumberController = TextEditingController();
+  final websiteController = TextEditingController();
+  final companyNameController = TextEditingController();
+  final categoryController = TextEditingController();
+  final priceController = TextEditingController();
+  final currencyController = TextEditingController();
+  final quantityController = TextEditingController();
+  final specialNotesController = TextEditingController();
+
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    countryController.dispose();
+    trackingNumberController.dispose();
+    websiteController.dispose();
+    companyNameController.dispose();
+    categoryController.dispose();
+    priceController.dispose();
+    currencyController.dispose();
+    quantityController.dispose();
+    specialNotesController.dispose();
+  }
+  
+  
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
@@ -87,6 +121,7 @@ class DeclareScreen extends StatelessWidget {
                     child: CustomTextField(
                       title: 'Country',
                       isAuth: false,
+                      controller: countryController,
                     ),
                   ),
                 ),
@@ -97,6 +132,7 @@ class DeclareScreen extends StatelessWidget {
                     child: CustomTextField(
                       title: 'Tracking Number',
                       isAuth: false,
+                      controller: trackingNumberController,
                     ),
                   ),
                 ),
@@ -107,6 +143,7 @@ class DeclareScreen extends StatelessWidget {
                     child: CustomTextField(
                       title: 'Website',
                       isAuth: false,
+                      controller: websiteController,
                     ),
                   ),
                 ),
@@ -117,6 +154,7 @@ class DeclareScreen extends StatelessWidget {
                     child: CustomTextField(
                       title: 'Company Name',
                       isAuth: false,
+                      controller: companyNameController,
                     ),
                   ),
                 ),
@@ -127,6 +165,7 @@ class DeclareScreen extends StatelessWidget {
                     child: CustomTextField(
                       title: 'Category',
                       isAuth: false,
+                      controller: categoryController,
                     ),
                   ),
                 ),
@@ -137,6 +176,7 @@ class DeclareScreen extends StatelessWidget {
                     child: CustomTextField(
                       title: 'Total Price',
                       isAuth: false,
+                      controller: priceController,
                     ),
                   ),
                 ),
@@ -147,6 +187,7 @@ class DeclareScreen extends StatelessWidget {
                     child: CustomTextField(
                       title: 'Currency',
                       isAuth: false,
+                      controller: currencyController,
                     ),
                   ),
                 ),
@@ -157,6 +198,7 @@ class DeclareScreen extends StatelessWidget {
                     child: CustomTextField(
                       title: 'Quantity',
                       isAuth: false,
+                      controller: quantityController,
                     ),
                   ),
                 ),
@@ -167,6 +209,7 @@ class DeclareScreen extends StatelessWidget {
                     child: CustomTextField(
                       title: 'Special Notes',
                       isAuth: false,
+                      controller: specialNotesController,
                     ),
                   ),
                 ),
@@ -225,10 +268,7 @@ class DeclareScreen extends StatelessWidget {
                   sliver: SliverToBoxAdapter(
                       child: SunButton(
                         onTap: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => SelectPaymentMethodScreen()),
-                          );
+                          Navigator.of(context).pop();
                         },
                         title: 'Save',
                       )
@@ -241,5 +281,9 @@ class DeclareScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _save(){
+
   }
 }
