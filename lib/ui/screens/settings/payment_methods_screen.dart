@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jetex_app/models/credit_card_model.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
+import 'package:jetex_app/utils/api.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 import 'package:jetex_app/utils/custom_icons_icons.dart';
 
@@ -82,6 +83,34 @@ class _PaymentMethodsState extends State<PaymentMethods> {
           ),
         ),
 
+        FutureBuilder<List<CreditCard>>(
+          future: _getCards(),
+          builder: (context, snapshot){
+
+            if(snapshot.hasData){
+              return SliverList(
+                delegate: SliverChildListDelegate(
+                    List.generate(snapshot.data.length, (index) => Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+                      child: CreditCardSnap(
+                        creditCard: snapshot.data[index],
+                        height: size.height * 0.19,
+                      ),
+                    ))
+                ),
+              );
+            }
+
+            return SliverList(
+              delegate: SliverChildListDelegate(
+                List.generate(1, (index) => Center(child: CircularProgressIndicator()))
+              ),
+            );
+          },
+        ),
+
+        /*
+
         SliverList(
           delegate: SliverChildListDelegate(
             List.generate(creditCards.length, (index) => Padding(
@@ -93,6 +122,8 @@ class _PaymentMethodsState extends State<PaymentMethods> {
             ))
           ),
         ),
+
+         */
 
         SliverToBoxAdapter(
           child: Padding(
@@ -151,6 +182,12 @@ class _PaymentMethodsState extends State<PaymentMethods> {
 
       ],
     );
+  }
+
+  Future<List<CreditCard>> _getCards() async {
+    await Future<dynamic>.delayed(const Duration(milliseconds: 500));
+    List<CreditCard> cards = API.getCards();
+    return cards;
   }
 
 
