@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:jetex_app/ui/screens/Referral/referral_screen.dart';
 import 'package:jetex_app/ui/screens/address/address_screen.dart';
-import 'package:jetex_app/ui/screens/delivery/delivary_screen.dart';
+import 'package:jetex_app/ui/screens/delivery/delivery_screen.dart';
 import 'package:jetex_app/ui/screens/home/home_screen.dart';
 import 'package:jetex_app/ui/screens/order/order_screen.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';

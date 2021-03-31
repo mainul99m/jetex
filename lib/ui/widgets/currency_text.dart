@@ -50,7 +50,7 @@ class CurrencyText extends StatelessWidget {
           ),
           SizedBox(width: 1,),
           Text(
-              '.$cent',
+              cent == 0 ? '.00':'.$cent',
               style: centStyle
           ),
         ],

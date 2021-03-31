@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jetex_app/models/order_model.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 import 'package:jetex_app/utils/custom_icons_icons.dart';
@@ -7,17 +8,11 @@ import 'package:jetex_app/utils/custom_icons_icons.dart';
 
 class DeliverySnap extends StatelessWidget {
 
-  final String deliveryId;
-  final String imgURL;
-  final double amount;
-  final int status;
+  final Order order;
 
   const DeliverySnap({
     Key key,
-    this.deliveryId,
-    this.imgURL,
-    this.amount,
-    this.status
+    this.order
   }) : super(key: key);
 
 
@@ -39,7 +34,7 @@ class DeliverySnap extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  deliveryId,
+                  order.trackingId,
                   style: TextStyle(
                       color: ColorPalette.mysticBlue,
                       fontFamily: 'HelveticaNeue',
@@ -48,7 +43,7 @@ class DeliverySnap extends StatelessWidget {
                   ),
                 ),
                 SvgPicture.asset(
-                  'assets/ui/logos/flo_logo.svg'
+                  _logoUrl()
                 )
               ],
             ),
@@ -59,7 +54,7 @@ class DeliverySnap extends StatelessWidget {
               textBaseline: TextBaseline.alphabetic,
               children: [
                 CurrencyText(
-                  amount: amount,
+                  amount: order.price,
                   isSmall: true,
                 ),
                 _deliveryStatus()
@@ -72,7 +67,7 @@ class DeliverySnap extends StatelessWidget {
   }
 
   Widget _deliveryStatus(){
-    if(status == 1){
+    if(order.orderStatus == 1){
       return Row(
         children: [
           Container(
@@ -97,7 +92,7 @@ class DeliverySnap extends StatelessWidget {
       );
     }
 
-    if(status == 2){
+    if(order.orderStatus == 2){
       return Row(
         children: [
           Container(
@@ -144,5 +139,11 @@ class DeliverySnap extends StatelessWidget {
         )
       ],
     );
+  }
+
+  String _logoUrl(){
+    if(order.company == 'FLO')
+      return 'assets/ui/logos/flo_logo.svg';
+    return 'assets/ui/logos/boyner_logo.svg';
   }
 }

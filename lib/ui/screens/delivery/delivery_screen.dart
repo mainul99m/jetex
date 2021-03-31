@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:jetex_app/models/order_model.dart';
 import 'package:jetex_app/ui/screens/delivery/request_delivery_screen.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
+import 'package:jetex_app/utils/api.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 
 class DeliveryScreen extends StatelessWidget {
@@ -104,6 +106,24 @@ class DeliveryScreen extends StatelessWidget {
         SliverToBoxAdapter(
           child: SizedBox(height: 16,),
         ),
+
+        FutureBuilder<List<Order>>(
+          future: _getData(),
+          builder: (context, snapshot){
+            if(snapshot.hasData){
+              return SliverList(
+                  delegate: SliverChildListDelegate(
+                      List.generate(snapshot.data.length, (index) => DeliverySnap(
+                        order: snapshot.data[index],
+                      )).toList())
+              );
+            }
+
+            return SliverToBoxAdapter(child: Center(child: CircularProgressIndicator()),);
+          },
+        )
+
+        /*
         SliverList(
             delegate: SliverChildListDelegate(
                 List.generate(3, (index) => DeliverySnap(
@@ -113,7 +133,15 @@ class DeliveryScreen extends StatelessWidget {
                   status: 2,
                 )).toList())
         )
+
+         */
       ],
     );
+  }
+
+  Future<List<Order>> _getData() async{
+    await Future<dynamic>.delayed(Duration(milliseconds: 500));
+    List<Order> transactions = API.getNewOrderHistory();
+    return transactions;
   }
 }

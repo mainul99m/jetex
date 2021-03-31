@@ -1,3 +1,4 @@
+import 'package:jetex_app/models/balance_model.dart';
 import 'package:jetex_app/models/contact_model.dart';
 import 'package:jetex_app/models/credit_card_model.dart';
 import 'package:jetex_app/models/order_model.dart';
@@ -88,10 +89,10 @@ class API {
          "date": "20.02.2021",
          "timeRange": "16:00 - 20:00",
          "quantity" : 2,
-         "price" : 20.12,
+         "price" : 220.00,
          "deliveryFee" : 4.44,
          "notes": "Some random notes",
-         "company": "FLO",
+         "company": "BOYNER",
          "weight": 2.34,
          "status" : 1
        },
@@ -101,7 +102,7 @@ class API {
          "date": "20.02.2021",
          "timeRange": "16:00 - 20:00",
          "quantity" : 2,
-         "price" : 20.12,
+         "price" : 41.98,
          "deliveryFee" : 4.44,
          "notes": "Some random notes",
          "company": "FLO",
@@ -206,5 +207,15 @@ class API {
      };
 
      return Referral.fromJSON(response);
+   }
+
+
+   static Balance getBalance(){
+     var response = {
+       "azn" : 80.40,
+       "tl" : 681.56,
+       "limited" : 220.12
+     };
+     return Balance.fromJSON(response);
    }
 }
