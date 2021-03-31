@@ -165,7 +165,7 @@ class AddressScreen extends StatelessWidget {
   }
 
   Future<Contact> _getData() async{
-    await Future<dynamic>.delayed(const Duration(milliseconds: 100));
+    await Future<dynamic>.delayed(const Duration(milliseconds: 500));
     Contact contact = API.getContact();
     return contact;
   }

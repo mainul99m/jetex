@@ -159,7 +159,7 @@ class _OrderScreenState extends State<OrderScreen> {
 
 
   Future<List<PaymentHistory>> _getData() async{
-    await Future<dynamic>.delayed(const Duration(milliseconds: 100));
+    await Future<dynamic>.delayed(const Duration(milliseconds: 500));
 
     var list = API.getPaymentHistory();
     return list;

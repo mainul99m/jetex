@@ -71,7 +71,7 @@ class NewOrdersScreen extends StatelessWidget {
   }
 
   Future<List<Order>> _getData()async{
-    await Future<dynamic>.delayed(const Duration(milliseconds: 100));
+    await Future<dynamic>.delayed(const Duration(milliseconds: 500));
     List<Order> orders = API.getNewOrderHistory();
     return orders;
   }

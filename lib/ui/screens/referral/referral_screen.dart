@@ -75,68 +75,75 @@ class _ReferralScreenState extends State<ReferralScreen> {
       builder: (context, snapshot){
         if(snapshot.hasData){
           return Container(
-            child: Column(
-              children: [
-                Container(
-                  height: _size.height * 0.17,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      gradient: gradient,
-                      borderRadius: BorderRadius.circular(25)
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    // crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(height: 2,),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.baseline,
-                        textBaseline: TextBaseline.alphabetic,
-                        children: [
-                          Text(
-                            snapshot.data.balance.toStringAsFixed(2),
+                height: _size.height * 0.17,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    gradient: gradient,
+                    borderRadius: BorderRadius.circular(25)
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 2,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: [
+                        Text(
+                          snapshot.data.balance.toStringAsFixed(2),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'HelveticaNeue',
+                              fontWeight: FontWeight.w300,
+                              fontSize: _size.height * 0.046
+                          ),
+                        ),
+                        SizedBox(width: 3,),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Text(
+                            'AZN',
                             style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'HelveticaNeue',
-                                fontWeight: FontWeight.w300,
-                                fontSize: _size.height * 0.046
+                              color: Colors.white,
+                              fontFamily: 'HelveticaNeue',
+                              fontWeight: FontWeight.w500,
+                              fontSize: 20,
                             ),
                           ),
-                          SizedBox(width: 3,),
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Text(
-                              'AZN',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontFamily: 'HelveticaNeue',
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                              ),
-                            ),
-                          )
-                        ],
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 5,),
+                    Text(
+                      'Bonus Balance',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'HelveticaNeue',
+                          fontWeight: FontWeight.w400,
+                          fontSize: 16,
+                          letterSpacing: 0
                       ),
-                      SizedBox(height: 5,),
-                      Text(
-                        'Bonus Balance',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'HelveticaNeue',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16,
-                            letterSpacing: 0
-                        ),
-                      )
-                    ],
-                  ),
+                    )
+                  ],
                 ),
-              ],
-            ),
           );
         }
-        return SizedBox();
+        return Container(
+          height: _size.height * 0.17,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              gradient: gradient,
+              borderRadius: BorderRadius.circular(25)
+          ),
+          child: Center(
+            child: CircularProgressIndicator(
+              backgroundColor: Colors.transparent,
+              valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+            ),
+          ),
+        );
       },
     );
   }
@@ -300,13 +307,13 @@ class _ReferralScreenState extends State<ReferralScreen> {
   }
 
   Future<List<Transaction>> _getData() async{
-    await Future<dynamic>.delayed(const Duration(milliseconds: 100));
+    await Future<dynamic>.delayed(Duration(milliseconds: 300));
     List<Transaction> transactions = API.getTransaction();
     return transactions;
   }
 
   Future<Referral> _getReferral() async{
-    await Future<dynamic>.delayed(const Duration(milliseconds: 100));
+    await Future<dynamic>.delayed(const Duration(milliseconds: 500));
     Referral referral = API.getReferral();
     setState(() {
       refLink = referral.link;
