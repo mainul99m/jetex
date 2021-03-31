@@ -41,6 +41,7 @@ dependencies:
   geolocator: ^7.0.1
   geocoding: ^2.0.0
   share: ^2.0.1
+  credit_card_type_detector: ^1.1.0
 
 dev_dependencies:
   flutter_test:

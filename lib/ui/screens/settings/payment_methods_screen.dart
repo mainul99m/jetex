@@ -2,6 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jetex_app/models/credit_card_model.dart';
+import 'package:jetex_app/ui/screens/settings/add_creditCard.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/api.dart';
 import 'package:jetex_app/utils/color_palette.dart';
@@ -137,7 +138,10 @@ class _PaymentMethodsState extends State<PaymentMethods> {
               color: Colors.grey[600],
               child: InkWell(
                 onTap: (){
-                  print('Add Card');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddCreditCard(),
+                  ));
                 },
                 child: Container(
                   height: 160,

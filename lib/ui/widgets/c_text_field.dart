@@ -10,6 +10,7 @@ class CustomTextField extends StatelessWidget {
   final TextInputType keyboardType;
   final bool obscureText;
   final bool readOnly;
+  final ValueChanged<String> onChanged;
 
   const CustomTextField({Key key,
     @required
@@ -18,7 +19,8 @@ class CustomTextField extends StatelessWidget {
     this.controller,
     this.keyboardType,
     this.obscureText,
-    this.readOnly = false
+    this.readOnly = false,
+    this.onChanged
   }) : super(key: key);
 
   @override
@@ -50,6 +52,7 @@ class CustomTextField extends StatelessWidget {
             fontWeight: FontWeight.w500,
             fontSize: _height * 0.018
           ),
+          onChanged: onChanged,
           decoration: InputDecoration(
             contentPadding: EdgeInsets.fromLTRB(12, _height * .018, 12, _height * .014),
             isDense: true,
