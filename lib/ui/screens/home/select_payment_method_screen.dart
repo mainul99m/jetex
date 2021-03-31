@@ -4,6 +4,7 @@ import 'package:jetex_app/models/credit_card_model.dart';
 import 'package:jetex_app/models/create_new_order.dart';
 import 'package:jetex_app/ui/screens/home/confirm_order_screen.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
+import 'package:jetex_app/utils/api.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 
 class SelectPaymentMethodScreen extends StatefulWidget {
@@ -115,6 +116,49 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
           Expanded(
             child: CustomScrollView(
               slivers: [
+
+                //load all credit card
+                FutureBuilder<List<CreditCard>>(
+                  future: _getCards(),
+                  builder: (context, snapshot){
+                    if(snapshot.hasData){
+                      return SliverList(
+                        delegate: SliverChildListDelegate(
+                            List.generate(snapshot.data.length, (index) => Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
+                              child: index == selectedCardIndex ? SelectedCreditCardSnap(
+                                creditCard: snapshot.data[index],
+                                height: 136,
+                                hasShadow: true,
+                              ) : InkWell(
+                                onTap: (){
+                                  setState(() {
+                                    selectedCardIndex = index;
+                                  });
+                                },
+                                child: CreditCardSnap(
+                                  creditCard: snapshot.data[index],
+                                  height: 136,
+                                  hasShadow: true,
+                                ),
+                              ),
+                            ))
+                        ),
+                      );
+                    }
+
+                    return SliverList(
+                      delegate: SliverChildListDelegate(
+                        List.generate(1, (index) => Center(child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CircularProgressIndicator(),
+                        )))
+                      ),
+                    );
+                  },
+                ),
+
+                /*
                 //load all credit card
                 SliverList(
                   delegate: SliverChildListDelegate(
@@ -140,11 +184,15 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
                   ),
                 ),
 
+                 */
+
                 //Add new card Btton
                 SliverToBoxAdapter(
                     child: Center(
                       child: InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          print('Add card');
+                        },
                         child: Container(
                           height: 30,
                           width: 200,
@@ -227,7 +275,6 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
                   ),
                 ),
 
-
                 //bottom proceed buttons
                 SliverToBoxAdapter(
                   child: SizedBox(height: 0,),
@@ -265,7 +312,6 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
                       )
                   ),
                 ),
-
               ],
             ),
           )
@@ -273,4 +319,12 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
       ),
     );
   }
+
+
+  Future<List<CreditCard>> _getCards() async {
+    await Future<dynamic>.delayed(const Duration(milliseconds: 500));
+    List<CreditCard> cards = API.getCards();
+    return cards;
+  }
+
 }

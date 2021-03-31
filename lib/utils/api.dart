@@ -218,4 +218,36 @@ class API {
      };
      return Balance.fromJSON(response);
    }
+
+   static List<CreditCard> getCards(){
+      var response = [
+        {
+          "name": "Mr. Jetex Azerbaizan",
+          "number": "5212-••••-••••-7596",
+          "expirationDate": "02/24",
+          "cardType": "MasterCard"
+        },
+        {
+          "name": "Mr. Jetex Azerbaizan",
+          "number": "4014-••••-••••-4569",
+          "expirationDate": "08/21",
+          "cardType": "VISA"
+        },
+        {
+          "name": "Mr. Jetex Azerbaizan",
+          "number": "5865-••••-••••-2258",
+          "expirationDate": "03/25",
+          "cardType": "MasterCard"
+        }
+      ];
+
+      List<CreditCard> cards = [];
+
+      for(var element in response){
+        var c = CreditCard.fromJSON(element);
+        cards.add(c);
+      }
+      return cards;
+   }
+
 }

@@ -5,6 +5,7 @@ import 'package:jetex_app/models/request_model.dart';
 import 'package:jetex_app/ui/screens/delivery/request_summery_screen.dart';
 import 'package:jetex_app/ui/screens/home/confirm_order_screen.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
+import 'package:jetex_app/utils/api.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 
 
@@ -266,6 +267,12 @@ class _RequestDeliveryPaymentMethodScreenState extends State<RequestDeliveryPaym
         ],
       ),
     );
+  }
+
+  Future<List<CreditCard>> _getCards() async {
+    await Future<dynamic>.delayed(const Duration(milliseconds: 500));
+    List<CreditCard> cards = API.getCards();
+    return cards;
   }
 }
 

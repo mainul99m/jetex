@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jetex_app/models/balance_model.dart';
 //import 'package:flutter_circular_chart/flutter_circular_chart.dart';
 import 'package:jetex_app/ui/screens/home/create_new_order_screen.dart';
 import 'package:jetex_app/ui/screens/home/declare_screen.dart';
@@ -12,11 +13,20 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
+  double _pageIndex = 0;
+  String _name = 'Jamil Alizada';
+  Balance _balance = Balance(
+    azn: 74.1,
+    tl: 233.5,
+    limited: 158.24
+  );
+
+
   final PageController _pageController = PageController(
     initialPage: 0,
     viewportFraction: 0.9
   );
-  double _pageIndex = 0;
+
 
 
   @override
@@ -35,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              //Dashboard
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 child: CustomAppbar(
@@ -51,10 +62,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(height: _size.height * .007,),
+              //welcome
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
                 child: Text(
-                  'Hello, \nJamil Alizada 👋',
+                  'Hello, \n${_name} 👋',
                   style: TextStyle(
                       fontFamily: 'HelveticaNeue',
                       fontWeight: FontWeight.w700,
@@ -116,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       _pageIndex = value.toDouble();
                     });
                   },
-                  children: _pageViewPages(_size, _gradient),
+                  children: _pageViewPages(_size, _gradient, null),
                 ),
               ),
               SizedBox(height: 12,),
@@ -171,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
 
-  List<Widget> _pageViewPages(Size size, Gradient gradient){
+  List<Widget> _pageViewPages(Size size, Gradient gradient, Balance balance){
     const double padding = 15.0;
     return [
       Padding(
@@ -207,7 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       textBaseline: TextBaseline.alphabetic,
                       children: [
                         Text(
-                          '74.60',
+                          _balance.azn.toStringAsFixed(2),
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'HelveticaNeue',
@@ -278,7 +290,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       textBaseline: TextBaseline.alphabetic,
                       children: [
                         Text(
-                          '786.84',
+                          _balance.tl.toStringAsFixed(2),
                           style: TextStyle(
                               color: Colors.white,
                               fontFamily: 'HelveticaNeue',
@@ -364,7 +376,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     textBaseline: TextBaseline.alphabetic,
                     children: [
                       Text(
-                        '158.20',
+                        _balance.limited.toStringAsFixed(2),
                         style: TextStyle(
                           fontFamily: 'HelveticaNeue',
                           fontWeight: FontWeight.w100,
@@ -401,5 +413,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     ];
   }
+
 
 }
