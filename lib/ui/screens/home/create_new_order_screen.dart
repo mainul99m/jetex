@@ -216,20 +216,7 @@ class _CreateNewOrderScreenState extends State<CreateNewOrderScreen> {
                   sliver: SliverToBoxAdapter(
                       child: SunButton(
                         onTap: (){
-
-                          final order = CreateNewOrder(
-                            country: countryController.text,
-                            link: linkController.text,
-                            quantity: quantityController.text == '' ? 0 : int.parse(quantityController.text),
-                            price: priceController.text == '' ? 0 : double.parse(priceController.text),
-                            deliveryFee: deliveryFeeController.text == '' ? 0 : double.parse(deliveryFeeController.text),
-                            additionalNotes: additionalNotesController.text
-                          );
-
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => SelectPaymentMethodScreen(order: order,)),
-                          );
+                          _proceed(context);
                         },
                         title: 'Proceed',
                       )
@@ -241,6 +228,23 @@ class _CreateNewOrderScreenState extends State<CreateNewOrderScreen> {
           )
         ],
       ),
+    );
+  }
+
+  void _proceed(BuildContext context){
+    final order = CreateNewOrder(
+        country: countryController.text,
+        link: linkController.text,
+        quantity: quantityController.text == '' ? 0 : int.parse(quantityController.text),
+        price: priceController.text == '' ? 0 : double.parse(priceController.text),
+        deliveryFee: deliveryFeeController.text == '' ? 0 : double.parse(deliveryFeeController.text),
+        additionalNotes: additionalNotesController.text
+    );
+    print(order.country);
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SelectPaymentMethodScreen(order: order,)),
     );
   }
 }

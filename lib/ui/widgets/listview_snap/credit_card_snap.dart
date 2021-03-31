@@ -21,7 +21,7 @@ class CreditCardSnap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Gradient gradient = _getGradientFromCardType(creditCard.type);
-    String url = _getCardLogoLink(creditCard.type);
+    String logoLoc = _getCardLogoLink(creditCard.type);
     return Container(
       padding: EdgeInsets.fromLTRB(26, 20, 26, 26),
       height: height,
@@ -68,10 +68,14 @@ class CreditCardSnap extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SvgPicture.network(
-                  url,
+                SvgPicture.asset(
+                  logoLoc,
                   width: 50,
                 ),
+                // SvgPicture.network(
+                //   url,
+                //   width: 50,
+                // ),
                 Text(
                   creditCard.expirationDate,
                   style: TextStyle(
@@ -83,7 +87,6 @@ class CreditCardSnap extends StatelessWidget {
                 ),
               ],
             ),
-
           ],
         ),
       ),
@@ -92,8 +95,8 @@ class CreditCardSnap extends StatelessWidget {
 
   String _getCardLogoLink(String cardType){
     if(cardType == 'MasterCard')
-      return 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg';
-    return 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg';
+      return 'assets/ui/logos/mastercard_logo.svg';
+    return 'assets/ui/logos/visa_logo.svg';
   }
 
   Gradient _getGradientFromCardType(String cardType){

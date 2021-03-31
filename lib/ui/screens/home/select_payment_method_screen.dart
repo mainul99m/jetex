@@ -17,32 +17,15 @@ class SelectPaymentMethodScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _SelectPaymentMethodScreenState createState() => _SelectPaymentMethodScreenState(order);
+  _SelectPaymentMethodScreenState createState() => _SelectPaymentMethodScreenState();
 }
 
 class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
 
-  final CreateNewOrder order;
-
 
   int selectedCardIndex = -10;
 
-  List<CreditCard> creditCards = [
-    CreditCard(
-        type: 'Visa',
-        number: '4522 .... 4444',
-        name: 'Mr jetex Azerbaijan',
-        expirationDate: '10/23'
-    ),
-    CreditCard(
-        type: 'MasterCard',
-        number: '5422 .... 4444',
-        name: 'Mr jetex Azerbaijan',
-        expirationDate: '12/23'
-    ),
-  ];
-
-  _SelectPaymentMethodScreenState(this.order);
+  CreditCard creditCard = CreditCard();
 
   @override
   Widget build(BuildContext context) {
@@ -132,6 +115,7 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
                                 hasShadow: true,
                               ) : InkWell(
                                 onTap: (){
+                                  creditCard = snapshot.data[index];
                                   setState(() {
                                     selectedCardIndex = index;
                                   });
@@ -294,14 +278,14 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
                           }
 
                           var _order = CreateNewOrder(
-                            country: order.country,
-                            link:  order.link,
-                            quantity: order.quantity,
-                            price: order.price,
-                            deliveryFee:  order.deliveryFee,
-                            additionalNotes: order.additionalNotes,
+                            country: widget.order.country,
+                            link:  widget.order.link,
+                            quantity: widget.order.quantity,
+                            price: widget.order.price,
+                            deliveryFee:  widget.order.deliveryFee,
+                            additionalNotes: widget.order.additionalNotes,
                           );
-                          if(selectedCardIndex > -1) _order.creditCard = creditCards[selectedCardIndex];
+                          if(selectedCardIndex > -1) _order.creditCard = creditCard;
 
                           Navigator.push(
                             context,
