@@ -81,7 +81,7 @@ class _SettingNotificationListViewSnapState extends State<SettingNotificationLis
     );
 
     var iOSPlatformChannelSpecifics = IOSNotificationDetails(
-        sound: 'a_long_cold_sting.wav',
+        sound: 'notification.wav',
         presentAlert: true,
         presentBadge: true,
         presentSound: true);
