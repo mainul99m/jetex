@@ -19,6 +19,8 @@ class _CreateNewOrderScreenState extends State<CreateNewOrderScreen> {
   final deliveryFeeController = TextEditingController();
   final additionalNotesController = TextEditingController();
 
+  List<String> links = [];
+
 
   @override
   void dispose() {
@@ -127,6 +129,25 @@ class _CreateNewOrderScreenState extends State<CreateNewOrderScreen> {
                     ),
                   ),
                 ),
+
+                //Additional Link
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(horizontal: 40),
+                  sliver: SliverList(
+                    delegate: SliverChildListDelegate(
+                      List.generate(links.length + 1 , (index){
+                        if(links.length == 0) return SizedBox();
+                        if(index == links.length) return SizedBox(height: 20,);
+                        return LinkSnap(
+                          link: links[index],
+                          index: index,
+                          onTap: _removeLink,
+                        );
+                      })
+                    ),
+                  ),
+                ),
+
                 //Quantity
                 SliverPadding(
                   padding: _padding,
@@ -178,7 +199,9 @@ class _CreateNewOrderScreenState extends State<CreateNewOrderScreen> {
                 SliverToBoxAdapter(
                   child: Center(
                     child: InkWell(
-                      onTap: (){},
+                      onTap: (){
+                        _addNewLinkPressed();
+                      },
                       child: Container(
                         height: 30,
                         width: 200,
@@ -199,7 +222,6 @@ class _CreateNewOrderScreenState extends State<CreateNewOrderScreen> {
                                 fontSize: 15,
                                 color: ColorPalette.darkPurple
                               ),
-
                             )
                           ],
                         ),
@@ -222,13 +244,26 @@ class _CreateNewOrderScreenState extends State<CreateNewOrderScreen> {
                       )
                   ),
                 ),
-
               ],
             ),
           )
         ],
       ),
     );
+  }
+
+  void _addNewLinkPressed(){
+    if(linkController.text != ''){
+      setState(() {
+        links.add(linkController.text);
+      });
+      linkController.text = '';
+    }
+  }
+  void _removeLink(int index){
+    setState(() {
+      links.removeAt(index);
+    });
   }
 
   void _proceed(BuildContext context){

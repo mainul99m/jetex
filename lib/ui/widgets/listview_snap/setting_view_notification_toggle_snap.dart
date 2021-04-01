@@ -103,8 +103,8 @@ class _SettingNotificationListViewSnapState extends State<SettingNotificationLis
   }
 
 
-
   void deleteAlarm() async{
     await flutterLocalNotificationsPlugin.cancel(0);
   }
+
 }

@@ -29,6 +29,7 @@ void main() async {
   );
 
   var initializationSettings = InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+  flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
   runApp(MyApp(appLanguage: appLanguage,));
 }
