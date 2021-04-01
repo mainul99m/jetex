@@ -259,4 +259,5 @@ class _SettingScreenState extends State<SettingScreen> {
       return 'English';
     return 'Unknown';
   }
+
 }

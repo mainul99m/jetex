@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:jetex_app/main.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 
 class SettingNotificationListViewSnap extends StatefulWidget {
@@ -43,6 +45,7 @@ class _SettingNotificationListViewSnapState extends State<SettingNotificationLis
                 value: _value,
                 activeColor: ColorPalette.sun,
                 onChanged: (value){
+                  _setNotification(value);
                   setState(() {
                     _value = value;
                   });
@@ -53,5 +56,55 @@ class _SettingNotificationListViewSnapState extends State<SettingNotificationLis
         ),
       ),
     );
+  }
+
+  void _setNotification(bool value){
+    if(value)
+      scheduleAlarm();
+    else
+      deleteAlarm();
+  }
+
+
+  /// For dummy notification
+  ///
+  void scheduleAlarm() async {
+    var scheduledNotificationDateTime = DateTime.now().add(Duration(minutes: 1));
+
+    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+      'alarm_notif',
+      'alarm_notif',
+      'Channel for Alarm notification',
+      icon: 'jetex_logo',
+      sound: RawResourceAndroidNotificationSound('notification'),
+      largeIcon: DrawableResourceAndroidBitmap('jetex_logo'),
+    );
+
+    var iOSPlatformChannelSpecifics = IOSNotificationDetails(
+        sound: 'a_long_cold_sting.wav',
+        presentAlert: true,
+        presentBadge: true,
+        presentSound: true);
+    var platformChannelSpecifics = NotificationDetails(
+        android: androidPlatformChannelSpecifics, iOS: iOSPlatformChannelSpecifics);
+
+    // ignore: deprecated_member_use
+
+    await flutterLocalNotificationsPlugin.show(0, 'Instant Notification', 'Shows instantly', NotificationDetails(
+        android: androidPlatformChannelSpecifics,
+        iOS: iOSPlatformChannelSpecifics
+    ));
+
+
+
+    // ignore: deprecated_member_use
+    await flutterLocalNotificationsPlugin.schedule(0, 'Jetex Title', 'Your Order is ready',
+        scheduledNotificationDateTime, platformChannelSpecifics);
+  }
+
+
+
+  void deleteAlarm() async{
+    await flutterLocalNotificationsPlugin.cancel(0);
   }
 }

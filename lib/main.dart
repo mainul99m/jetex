@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:jetex_app/ui/screens/auth/welcome_screen.dart';
 import 'package:jetex_app/ui/screens/auth/login_screen.dart';
@@ -9,10 +10,26 @@ import 'package:provider/provider.dart';
 
 import 'ui/screens/auth/welcome_screen.dart';
 
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  /// Localization
   AppLanguage appLanguage = AppLanguage();
   await appLanguage.fetchLocale();
+
+  /// Notification
+  var initializationSettingsAndroid = AndroidInitializationSettings('jetex_logo');
+  var initializationSettingsIOS = IOSInitializationSettings(
+    requestBadgePermission: true,
+    requestAlertPermission: true,
+    requestSoundPermission: true,
+    onDidReceiveLocalNotification: (int id, String title, String body, String payload) async{}
+  );
+
+  var initializationSettings = InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+
   runApp(MyApp(appLanguage: appLanguage,));
 }
 
