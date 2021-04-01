@@ -77,6 +77,7 @@ flutter:
      - assets/ui/logos/mastercard_logo.svg
      - assets/ui/icons/order_box.svg
      - assets/ui/icons/declare_icon.svg
+     - assets/ui/icons/limited_balance.svg
      - i18n/en.json
      - i18n/tr.json
   # An image asset can refer to one or more resolution-specific "variants", see

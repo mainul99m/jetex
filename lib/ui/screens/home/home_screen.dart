@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jetex_app/models/balance_model.dart';
 //import 'package:flutter_circular_chart/flutter_circular_chart.dart';
 import 'package:jetex_app/ui/screens/home/create_new_order_screen.dart';
@@ -368,6 +369,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               
                */
+              SvgPicture.asset(
+                'assets/ui/icons/limited_balance.svg'
+              ),
+              SizedBox(width: 8,),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

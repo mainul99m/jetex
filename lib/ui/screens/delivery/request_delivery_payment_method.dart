@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jetex_app/models/credit_card_model.dart';
 import 'package:jetex_app/models/request_model.dart';
 import 'package:jetex_app/ui/screens/delivery/request_summery_screen.dart';
-import 'package:jetex_app/ui/screens/home/confirm_order_screen.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/api.dart';
 import 'package:jetex_app/utils/color_palette.dart';
@@ -26,20 +24,7 @@ class _RequestDeliveryPaymentMethodScreenState extends State<RequestDeliveryPaym
 
   int selectedCardIndex = -10;
 
-  List<CreditCard> creditCards = [
-    CreditCard(
-        type: 'Visa',
-        number: '4522 .... 4444',
-        name: 'Mr jetex Azerbaijan',
-        expirationDate: '10/23'
-    ),
-    CreditCard(
-        type: 'MasterCard',
-        number: '5422 .... 4444',
-        name: 'Mr jetex Azerbaijan',
-        expirationDate: '12/23'
-    ),
-  ];
+  var creditCard = CreditCard();
 
 
   @override
@@ -111,6 +96,48 @@ class _RequestDeliveryPaymentMethodScreenState extends State<RequestDeliveryPaym
             child: CustomScrollView(
               slivers: [
                 //load all credit card
+                FutureBuilder<List<CreditCard>>(
+                  future: _getCards(),
+                  builder: (context, snapshot){
+                    if(snapshot.hasData){
+                      return SliverList(
+                        delegate: SliverChildListDelegate(
+                            List.generate(snapshot.data.length, (index) => Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
+                              child: index == selectedCardIndex ? SelectedCreditCardSnap(
+                                creditCard: snapshot.data[index],
+                                height: 136,
+                                hasShadow: true,
+                              ) : InkWell(
+                                onTap: (){
+                                  creditCard = snapshot.data[index];
+                                  setState(() {
+                                    selectedCardIndex = index;
+                                  });
+                                },
+                                child: CreditCardSnap(
+                                  creditCard: snapshot.data[index],
+                                  height: 136,
+                                  hasShadow: true,
+                                ),
+                              ),
+                            ))
+                        ),
+                      );
+                    }
+
+                    return SliverList(
+                      delegate: SliverChildListDelegate(
+                          List.generate(1, (index) => Center(child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CircularProgressIndicator(),
+                          )))
+                      ),
+                    );
+                  },
+                ),
+
+                /*
                 SliverList(
                   delegate: SliverChildListDelegate(
                       List.generate(creditCards.length, (index) => Padding(
@@ -134,6 +161,8 @@ class _RequestDeliveryPaymentMethodScreenState extends State<RequestDeliveryPaym
                       ))
                   ),
                 ),
+
+                 */
 
                 //Add new card Btton
                 SliverToBoxAdapter(
@@ -249,7 +278,7 @@ class _RequestDeliveryPaymentMethodScreenState extends State<RequestDeliveryPaym
                             additionalNotes: widget.order.additionalNotes,
                             deliveryFee: widget.order.deliveryFee,
                           );
-                          if(selectedCardIndex > -1) _order.creditCard = creditCards[selectedCardIndex];
+                          if(selectedCardIndex > -1) _order.creditCard = creditCard;
 
                           Navigator.push(
                             context,
