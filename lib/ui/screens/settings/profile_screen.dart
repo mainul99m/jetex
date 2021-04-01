@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 
@@ -10,6 +13,10 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
 
+  File _image;
+  final picker = ImagePicker();
+
+
   TextEditingController _nameController = TextEditingController();
   TextEditingController _idController = TextEditingController();
   TextEditingController _finController = TextEditingController();
@@ -17,6 +24,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController _phoneController = TextEditingController();
   TextEditingController _dobController = TextEditingController();
   TextEditingController _adressController = TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _nameController.dispose();
+    _idController.dispose();
+    _finController.dispose();
+    _genderController.dispose();
+    _phoneController.dispose();
+    _dobController.dispose();
+    _adressController.dispose();
+  }
+
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
 
 
 
@@ -63,9 +95,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
-          child: CircleAvatar(
-            backgroundImage: NetworkImage('https://picsum.photos/200/300'),
-            radius: size.height * 0.06,
+          child: InkWell(
+            onTap: (){
+              getImage();
+            },
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                CircleAvatar(
+                  backgroundImage: _image == null ? NetworkImage(
+                    'https://i.pravatar.cc/150?img=60'
+                  ) : FileImage(_image),
+                  radius: size.height * 0.06,
+                ),
+                CircleAvatar(
+                  radius: size.height * 0.06,
+                  backgroundColor: ColorPalette.sun.withAlpha(120),
+                ),
+                Center(
+                  child: Icon(
+                    Icons.camera_alt_outlined,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         //name

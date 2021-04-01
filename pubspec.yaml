@@ -42,6 +42,8 @@ dependencies:
   geocoding: ^2.0.0
   share: ^2.0.1
   credit_card_type_detector: ^1.1.0
+  image_picker: ^0.7.4
+  flutter_local_notifications: ^5.0.0
 
 dev_dependencies:
   flutter_test:
