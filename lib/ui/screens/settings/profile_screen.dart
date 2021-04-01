@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/color_palette.dart';
+import 'package:jetex_app/utils/disable_focusnode.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -62,7 +64,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             _appBar(size),
             Expanded(
-              child: _profileView(size)
+              child: _profileView(size, context)
             )
           ],
         ),
@@ -88,7 +90,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget _profileView(Size size){
+  Widget _profileView(Size size, BuildContext ctx){
 
     EdgeInsetsGeometry padding = EdgeInsets.symmetric(horizontal: 30, vertical: size.height * 0.0145);
 
@@ -231,6 +233,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               isAuth: false,
               keyboardType: TextInputType.datetime,
               controller: _dobController,
+              onTap: (){
+                _pickDate(ctx);
+              },
+              focusNode: AlwaysDisabledFocusNode(),
             ),
           ),
         ),
@@ -268,6 +274,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       ],
     );
+  }
+
+  void _pickDate(BuildContext context) async{
+    print('tap');
+    DateTime date = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(DateTime.now().year - 1),
+        lastDate: DateTime(DateTime.now().year + 5)
+    );
+
+    if(date != null){
+      final f = new DateFormat('dd-MM-yyyy');
+      String d = f.format(date);
+      _dobController.text = d;
+    }
 
   }
 }

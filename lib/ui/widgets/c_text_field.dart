@@ -12,6 +12,7 @@ class CustomTextField extends StatelessWidget {
   final bool readOnly;
   final ValueChanged<String> onChanged;
   final VoidCallback onTap;
+  final FocusNode focusNode;
 
   const CustomTextField({Key key,
     @required
@@ -22,7 +23,8 @@ class CustomTextField extends StatelessWidget {
     this.obscureText,
     this.readOnly = false,
     this.onChanged,
-    this.onTap
+    this.onTap,
+    this.focusNode
   }) : super(key: key);
 
   @override
@@ -56,6 +58,7 @@ class CustomTextField extends StatelessWidget {
           ),
           onChanged: onChanged,
           onTap: onTap,
+          focusNode: focusNode,
           decoration: InputDecoration(
             contentPadding: EdgeInsets.fromLTRB(12, _height * .018, 12, _height * .014),
             isDense: true,
