@@ -118,7 +118,7 @@ class ConfirmOrderScreen extends StatelessWidget {
                   sliver: SliverToBoxAdapter(
                     child: SummeryRow(
                       leading: 'Link',
-                      trailing: order.link,
+                      trailing: order.products.first.link,
                     ),
                   ),
                 ),
@@ -129,7 +129,7 @@ class ConfirmOrderScreen extends StatelessWidget {
                   sliver: SliverToBoxAdapter(
                     child: SummeryRow(
                       leading: 'Quantity',
-                      trailing: order.quantity.toString(),
+                      trailing: order.products.first.quantity.toString(),
                     ),
                   ),
                 ),
@@ -140,7 +140,7 @@ class ConfirmOrderScreen extends StatelessWidget {
                   sliver: SliverToBoxAdapter(
                     child: SummeryRow(
                       leading: 'Price(TL)',
-                      trailing: order.price.toStringAsFixed(2),
+                      trailing: order.products.first.price.toStringAsFixed(2),
                     ),
                   ),
                 ),
@@ -151,7 +151,7 @@ class ConfirmOrderScreen extends StatelessWidget {
                   sliver: SliverToBoxAdapter(
                     child: SummeryRow(
                       leading: 'Delivery Fee(TL)',
-                      trailing: order.deliveryFee.toStringAsFixed(2),
+                      trailing: order.products.first.deliveryFee.toStringAsFixed(2),
                     ),
                   ),
                 ),
@@ -162,7 +162,7 @@ class ConfirmOrderScreen extends StatelessWidget {
                   sliver: SliverToBoxAdapter(
                     child: SummeryRow(
                       leading: 'Additional Notes',
-                      trailing: order.additionalNotes,
+                      trailing: order.products.first.additionalNotes,
                     ),
                   ),
                 ),
@@ -186,7 +186,7 @@ class ConfirmOrderScreen extends StatelessWidget {
                   sliver: SliverToBoxAdapter(
                     child: SummeryRow(
                       leading: 'Total Order (TL)',
-                      trailing: (order.price * order.quantity + order.deliveryFee).toStringAsFixed(2),
+                      trailing: (order.products.first.price * order.products.first.quantity + order.products.first.deliveryFee).toStringAsFixed(2),
                     ),
                   ),
                 ),

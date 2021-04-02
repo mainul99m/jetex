@@ -20,6 +20,9 @@ class _CreateNewOrderScreenState extends State<CreateNewOrderScreen> {
   final additionalNotesController = TextEditingController();
 
   List<String> links = [];
+  List<Product> products = [
+    Product()
+  ];
 
 
   @override
@@ -130,6 +133,7 @@ class _CreateNewOrderScreenState extends State<CreateNewOrderScreen> {
                   ),
                 ),
 
+                /*
                 //Additional Link
                 SliverPadding(
                   padding: EdgeInsets.symmetric(horizontal: 40),
@@ -147,6 +151,8 @@ class _CreateNewOrderScreenState extends State<CreateNewOrderScreen> {
                     ),
                   ),
                 ),
+
+                 */
 
                 //Quantity
                 SliverPadding(
@@ -195,7 +201,25 @@ class _CreateNewOrderScreenState extends State<CreateNewOrderScreen> {
                     ),
                   ),
                 ),
-                //Add new Link Btton
+
+                SliverPadding(
+                  padding: _padding,
+                  sliver: SliverList(
+                    delegate: SliverChildListDelegate(
+                      List.generate(products.length-1, (index) => AddNewLinkSnap(
+                        value: products[index+1],
+                        onChanged: (value){
+                          _productOnChanged(value, index+1);
+                        },
+                        onTap: (){
+                          _removeLink(index+1);
+                        },
+                      ))
+                    ),
+                  ),
+                ),
+
+                //Add new Link Button
                 SliverToBoxAdapter(
                   child: Center(
                     child: InkWell(
@@ -252,28 +276,36 @@ class _CreateNewOrderScreenState extends State<CreateNewOrderScreen> {
     );
   }
 
+  void _productOnChanged(Product product, int index){
+    products[index] = product;
+  }
+
   void _addNewLinkPressed(){
-    if(linkController.text != ''){
-      setState(() {
-        links.add(linkController.text);
-      });
-      linkController.text = '';
-    }
+    setState(() {
+      products.add(Product(
+        quantity: 0,
+        price: 0,
+        deliveryFee: 0
+      ));
+    });
   }
   void _removeLink(int index){
     setState(() {
-      links.removeAt(index);
+      products.removeAt(index);
     });
   }
 
   void _proceed(BuildContext context){
+
+    products.first.link = linkController.text;
+    products.first.quantity = quantityController.text == '' ? 0 : int.parse(quantityController.text);
+    products.first.price = priceController.text == '' ? 0 : double.parse(priceController.text);
+    products.first.deliveryFee = deliveryFeeController.text == '' ? 0 : double.parse(deliveryFeeController.text);
+    products.first.additionalNotes = additionalNotesController.text;
+
     final order = CreateNewOrder(
         country: countryController.text,
-        link: linkController.text,
-        quantity: quantityController.text == '' ? 0 : int.parse(quantityController.text),
-        price: priceController.text == '' ? 0 : double.parse(priceController.text),
-        deliveryFee: deliveryFeeController.text == '' ? 0 : double.parse(deliveryFeeController.text),
-        additionalNotes: additionalNotesController.text
+        products: products
     );
     print(order.country);
 

@@ -283,11 +283,7 @@ class _SelectPaymentMethodScreenState extends State<SelectPaymentMethodScreen> {
 
                           var _order = CreateNewOrder(
                             country: widget.order.country,
-                            link:  widget.order.link,
-                            quantity: widget.order.quantity,
-                            price: widget.order.price,
-                            deliveryFee:  widget.order.deliveryFee,
-                            additionalNotes: widget.order.additionalNotes,
+                            products: widget.order.products
                           );
                           if(selectedCardIndex > -1) _order.creditCard = creditCard;
 

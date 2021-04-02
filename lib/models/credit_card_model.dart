@@ -19,4 +19,10 @@ class CreditCard{
       type: json["cardType"]
     );
   }
+  Map<String, dynamic> toJson() => {
+    "name" : name,
+    "number" : number,
+    "expirationDate" : expirationDate,
+    "cardType" : type
+  };
 }

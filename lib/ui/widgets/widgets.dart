@@ -15,6 +15,7 @@ export 'listview_snap/credit_card_snap.dart';
 export 'listview_snap/expandable_order_snap.dart';
 export 'listview_snap/selected_credit_card_snap.dart';
 export 'listview_snap/link_snap.dart';
+export 'listview_snap/new_link_snap.dart';
 export 'currency_text.dart';
 export 'order_view_button.dart';
 export 'back_button.dart';
