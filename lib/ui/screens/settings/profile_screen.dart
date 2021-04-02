@@ -308,6 +308,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             TextButton(
               onPressed: (){
                 getImage(ImageSource.camera);
+                Navigator.pop(context);
               },
               child: Text('Camera'),
             )

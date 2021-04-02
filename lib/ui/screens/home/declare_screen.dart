@@ -324,6 +324,7 @@ class _DeclareScreenState extends State<DeclareScreen> {
             TextButton(
               onPressed: (){
                 getImage(ImageSource.camera);
+                Navigator.pop(context);
               },
               child: Text('Camera'),
             )
