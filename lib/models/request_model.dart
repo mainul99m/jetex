@@ -30,4 +30,14 @@ class RequestOrder {
       creditCard: CreditCard.fromJSON(json["creditCard"])
     );
   }
+
+  Map<String, dynamic> toJSON() => {
+    "trackingId" : trackingNumber,
+    "address" : address,
+    "notes" : additionalNotes,
+    "date" : date,
+    "TimeRange" : timeRange,
+    "deliveryFee" : deliveryFee,
+    "creditCard" : creditCard.toJson()
+  };
 }

@@ -1,9 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:jetex_app/models/request_model.dart';
 import 'package:jetex_app/ui/screens/delivery/request_delivery_payment_method.dart';
 import 'package:jetex_app/ui/widgets/back_button.dart';
@@ -12,6 +12,7 @@ import 'package:jetex_app/ui/widgets/c_text_field.dart';
 import 'package:jetex_app/ui/widgets/currency_text.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 import 'package:jetex_app/utils/custom_icons_icons.dart';
+import 'package:jetex_app/utils/disable_focusnode.dart';
 
 
 class RequestDeliveryScreen extends StatefulWidget {
@@ -24,6 +25,10 @@ class _RequestDeliveryScreenState extends State<RequestDeliveryScreen> {
   String _pickedAddress = '';
   LatLng _lastMapPosition;
   Completer<GoogleMapController> _controller = Completer();
+
+  String _date = '';
+  String _from = '';
+  String _to = '';
 
 
   static final CameraPosition _kGooglePlex = CameraPosition(
@@ -211,6 +216,11 @@ class _RequestDeliveryScreenState extends State<RequestDeliveryScreen> {
                     isAuth: false,
                     keyboardType: TextInputType.datetime,
                     controller: _dateTimeNumberController,
+                    focusNode: AlwaysDisabledFocusNode(),
+                    onTap: (){
+                      // _showDialogue(context);
+                      _pickDate(context);
+                    },
                   ),
                 ),
               ),
@@ -361,6 +371,53 @@ class _RequestDeliveryScreenState extends State<RequestDeliveryScreen> {
     );
   }
 
+
+  void _pickDate(BuildContext context) async{
+    DateTime date = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime.now(),
+        lastDate: DateTime(DateTime.now().year + 2)
+    );
+
+    if(date != null){
+      final df = new DateFormat('dd-MM-yyyy');
+      _date = df.format(date);
+      _timePickerFrom(context);
+    }
+
+  }
+
+  void _timePickerFrom(BuildContext context) async {
+
+    TimeOfDay time = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay(hour: 10, minute: 0)
+
+    );
+
+    if(time != null){
+      _from = '${time.hour.toString()}:${time.minute.toString()}';
+      _timePickerTo(context);
+    }
+  }
+  void _timePickerTo(BuildContext context) async {
+
+    TimeOfDay time = await showTimePicker(
+        context: context,
+        initialTime: TimeOfDay(hour: 10, minute: 0)
+
+    );
+
+    if(time != null){
+      _to = '${time.hour.toString()}:${time.minute.toString()}';
+      _dateTimeNumberController.text = '${_date}   ${_from} - ${_to}';
+      print('${_date}   ${_from} - ${_to}');
+    }
+  }
+
+
+
   void _onConfirmTap(){
     _addressController.text = _pickedAddress;
     setState(() {
@@ -371,10 +428,10 @@ class _RequestDeliveryScreenState extends State<RequestDeliveryScreen> {
   void _onProceedtap(){
     RequestOrder order = RequestOrder(
       trackingNumber: _trackingNumberController.text,
-      date: _dateTimeNumberController.text,
+      date: _date,
       additionalNotes: _additionalNotesController.text,
       address: _addressController.text,
-      timeRange: '12:00 - 16:00',
+      timeRange: '${_from} - ${_to}',
       deliveryFee: 17.32
     );
     Navigator.push(
