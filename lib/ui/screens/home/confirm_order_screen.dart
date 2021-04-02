@@ -167,6 +167,32 @@ class ConfirmOrderScreen extends StatelessWidget {
                   ),
                 ),
 
+                /*
+                SliverPadding(
+                  padding: _padding,
+                  sliver: SliverToBoxAdapter(
+                    child: CreateNewOrderSummerySnap(
+                      product: order.products.first,
+                    ),
+                  ),
+                ),
+                 */
+
+                // Additional Orders
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  sliver: SliverList(
+                    delegate: SliverChildListDelegate(
+                      List.generate(order.products.length - 1, (index) => CreateNewOrderSummerySnap(
+                        product: order.products[index+1],
+                      ))
+                    ),
+                  ),
+                ),
+
+
+
+
                 SliverPadding(
                   padding: _padding,
                   sliver: SliverToBoxAdapter(
@@ -186,7 +212,7 @@ class ConfirmOrderScreen extends StatelessWidget {
                   sliver: SliverToBoxAdapter(
                     child: SummeryRow(
                       leading: 'Total Order (TL)',
-                      trailing: (order.products.first.price * order.products.first.quantity + order.products.first.deliveryFee).toStringAsFixed(2),
+                      trailing: calculateTotalPrice().toStringAsFixed(2),
                     ),
                   ),
                 ),
@@ -246,5 +272,14 @@ class ConfirmOrderScreen extends StatelessWidget {
       Navigator.of(context).pop();
       popUntilRoot(context);
     }
+  }
+
+  double calculateTotalPrice(){
+    double price = 0;
+    for(Product p in order.products){
+      price += p.price;
+      price += p.deliveryFee;
+    }
+    return price;
   }
 }
