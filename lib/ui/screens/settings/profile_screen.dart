@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:jetex_app/models/user_model.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 import 'package:jetex_app/utils/disable_focusnode.dart';
@@ -40,8 +41,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _adressController.dispose();
   }
 
-  Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.camera);
+  Future getImage(ImageSource source) async {
+    final pickedFile = await picker.getImage(source: source);
 
     setState(() {
       if (pickedFile != null) {
@@ -99,7 +100,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         SliverToBoxAdapter(
           child: InkWell(
             onTap: (){
-              getImage();
+              _setProfileImage(context);
             },
             child: Stack(
               alignment: Alignment.center,
@@ -276,6 +277,47 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
+  void _save(){
+    var user = User(
+      name: _nameController.text,
+      id: _idController.text,
+      fin: _finController.text,
+      gender: _genderController.text,
+      phone: _phoneController.text,
+      dob: _dobController.text,
+      address: _adressController.text,
+      profileImageFile: _image
+    );
+  }
+
+
+  void _setProfileImage(BuildContext context){
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: Text('Select'),
+          content: Text('Select image from'),
+          actions: [
+            TextButton(
+              onPressed: (){
+                getImage(ImageSource.gallery);
+                Navigator.pop(context);
+              },
+              child: Text('Gallery'),
+            ),
+            TextButton(
+              onPressed: (){
+                getImage(ImageSource.camera);
+              },
+              child: Text('Camera'),
+            )
+          ],
+        ),
+        barrierDismissible: true
+    );
+  }
+
+
   void _pickDate(BuildContext context) async{
     print('tap');
     DateTime date = await showDatePicker(
@@ -290,6 +332,5 @@ class _ProfileScreenState extends State<ProfileScreen> {
       String d = f.format(date);
       _dobController.text = d;
     }
-
   }
 }
