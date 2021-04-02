@@ -1,7 +1,10 @@
+import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:jetex_app/ui/screens/home/select_payment_method_screen.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:jetex_app/models/declare_model.dart';
 import 'package:jetex_app/ui/widgets/widgets.dart';
 import 'package:jetex_app/utils/color_palette.dart';
 
@@ -12,6 +15,8 @@ class DeclareScreen extends StatefulWidget {
 }
 
 class _DeclareScreenState extends State<DeclareScreen> {
+  File _invoiceImage;
+  final picker = ImagePicker();
   
   //controllers
   final countryController = TextEditingController();
@@ -228,7 +233,7 @@ class _DeclareScreenState extends State<DeclareScreen> {
                       color: ColorPalette.darkPurple,
                       child: InkWell(
                         onTap: (){
-
+                          _uploadInvoicePressed(context);
                         },
                         child: Container(
                           height: _size.height * 0.13,
@@ -283,7 +288,63 @@ class _DeclareScreenState extends State<DeclareScreen> {
     );
   }
 
-  void _save(){
+  Future getImage(ImageSource source) async {
+    final pickedFile = await picker.getImage(source: source);
 
+    var snackBar = SnackBar(content: Text('Please select your payment method'));
+    if(pickedFile != null){
+      setState(() {
+        _invoiceImage = File(pickedFile.path);
+      });
+      snackBar = SnackBar(content: Text('Invoice selected'));
+    }
+    else {
+      snackBar = SnackBar(content: Text('Invoice not selected'));
+    }
+
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+  }
+
+  void _uploadInvoicePressed(BuildContext context){
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: Text('Select'),
+          content: Text(''),
+          actions: [
+            TextButton(
+              onPressed: (){
+                getImage(ImageSource.gallery);
+                Navigator.pop(context);
+              },
+              child: Text('Gallery'),
+            ),
+            TextButton(
+              onPressed: (){
+                getImage(ImageSource.camera);
+              },
+              child: Text('Camera'),
+            )
+          ],
+        ),
+        barrierDismissible: true
+    );
+  }
+
+  void _save(){
+    var declare = Declare(
+      country: countryController.text,
+      trackingNumber: trackingNumberController.text,
+      website: websiteController.text,
+      company: companyNameController.text,
+      category: categoryController.text,
+      price: priceController.text == '' ? 0 : double.parse(priceController.text),
+      currency: currencyController.text,
+      quantity: quantityController.text == '' ? 0 : int.parse(quantityController.text),
+      notes: specialNotesController.text,
+      invoice: _invoiceImage
+    );
   }
 }

@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+
 class Declare{
   final String country;
   final String trackingNumber;
@@ -8,6 +12,7 @@ class Declare{
   final String currency;
   final int quantity;
   final String notes;
+  final File invoice;
 
   Declare({
     this.country,
@@ -18,6 +23,21 @@ class Declare{
     this.price,
     this.currency,
     this.quantity,
-    this.notes
+    this.notes,
+    this.invoice
   });
+
+  Map<String, dynamic> toJSON() => {
+    "country" : country,
+    "trackingID" : trackingNumber,
+    "website" : website,
+    "company": company,
+    "category": category,
+    "price": price,
+    "currency" : currency,
+    "quantity" : quantity,
+    "quality": quantity,
+    "notes" : notes,
+    "invoice": invoice
+  };
 }
