@@ -103,7 +103,10 @@ class _AddNewLinkSnapState extends State<AddNewLinkSnap> {
             title: 'Price (TL)',
             isAuth: false,
             controller: priceController,
-            keyboardType: TextInputType.number,
+            keyboardType: TextInputType.numberWithOptions(
+                signed: true,
+                decimal: true
+            ),
             onChanged: _onChange,
           ),
         ),
@@ -114,7 +117,10 @@ class _AddNewLinkSnapState extends State<AddNewLinkSnap> {
             title: 'Delivery Fee (TL)',
             isAuth: false,
             controller: deliveryFeeController,
-            keyboardType: TextInputType.number,
+            keyboardType: TextInputType.numberWithOptions(
+                signed: true,
+                decimal: true
+            ),
             onChanged: _onChange,
           ),
         ),

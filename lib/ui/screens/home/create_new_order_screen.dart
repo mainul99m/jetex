@@ -174,7 +174,10 @@ class _CreateNewOrderScreenState extends State<CreateNewOrderScreen> {
                       title: 'Price (TL)',
                       isAuth: false,
                       controller: priceController,
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.numberWithOptions(
+                        signed: true,
+                        decimal: true
+                      ),
                     ),
                   ),
                 ),
@@ -186,7 +189,10 @@ class _CreateNewOrderScreenState extends State<CreateNewOrderScreen> {
                       title: 'Delivery Fee (TL)',
                       isAuth: false,
                       controller: deliveryFeeController,
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.numberWithOptions(
+                          signed: true,
+                          decimal: true
+                      ),
                     ),
                   ),
                 ),
